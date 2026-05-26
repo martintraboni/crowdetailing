@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crow Detailing | Tienda de Productos Premium</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M40 5 L10 25 L18 22 L15 40 L25 32 L28 45 L40 35 L52 45 L55 32 L65 40 L62 22 L70 25 Z" stroke="white" stroke-width="2" fill="none"/>
+            <path d="M30 35 L35 50 L40 42 L45 50 L50 35" stroke="white" stroke-width="1.5" fill="none"/>
+            <path d="M36 28 L40 20 L44 28 L40 32 Z" stroke="white" stroke-width="1.5" fill="none"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-crow">CROW</span>
+          <span class="logo-detailing">DETAILING</span>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#productos">Productos</a></li>
+          <li><a href="#resenas">Reseñas</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a href="#contacto" class="btn-header">Consultar</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section id="inicio" class="hero">
+      <div class="hero-bg-glow"></div>
+      <div class="hero-content">
+        <p class="hero-tag">Detailing Profesional · Villa Urquiza, CABA</p>
+        <h1 class="hero-title">
+          PROTEGE<br/>
+          <span class="hero-accent">TU VEHÍCULO</span><br/>
+          COMO MERECE
+        </h1>
+        <p class="hero-sub">Productos premium de detailing para autos y motos. Lavado, pulido, cerámica y brillo profesional.</p>
+        <div class="hero-btns">
+          <a href="#productos" class="btn-primary">Ver Productos</a>
+          <a href="#contacto" class="btn-outline">Consultar Turno</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><span class="stat-num">500+</span><span class="stat-label">Clientes</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-num">4.9★</span><span class="stat-label">Calificación</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-num">3+</span><span class="stat-label">Años</span></div>
+        </div>
+      </div>
+      <div class="hero-video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ?mute=1&controls=1"
+          title="Crow Detailing - Video Presentación"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+        <div class="video-label">Mirá cómo trabajamos</div>
+      </div>
+    </section>
+
+    <section class="servicios-bar">
+      <div class="servicios-inner">
+        <div class="servicio-item">
+          <span class="serv-icon">💧</span>
+          <div><strong>Lavado Premium</strong><p>Sin contacto ni marcas</p></div>
+        </div>
+        <div class="servicio-item">
+          <span class="serv-icon">🔄</span>
+          <div><strong>Pulido Profesional</strong><p>Elimina rayones y marcas</p></div>
+        </div>
+        <div class="servicio-item">
+          <span class="serv-icon">🛡️</span>
+          <div><strong>Protección Cerámica</strong><p>Durabilidad máxima</p></div>
+        </div>
+        <div class="servicio-item">
+          <span class="serv-icon">✨</span>
+          <div><strong>Brillo Total</strong><p>Acabado showroom</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="productos" class="productos">
+      <div class="section-header">
+        <p class="section-tag">Catálogo</p>
+        <h2>NUESTROS <span class="accent">PRODUCTOS</span></h2>
+        <p class="section-sub">Todo lo que necesitás para el cuidado profesional de tu vehículo</p>
+      </div>
+
+      <div class="filtros">
+        <button class="filtro active" onclick="filtrar(this, 'todos')">Todos</button>
+        <button class="filtro" onclick="filtrar(this, 'lavado')">Lavado</button>
+        <button class="filtro" onclick="filtrar(this, 'pulido')">Pulido</button>
+        <button class="filtro" onclick="filtrar(this, 'ceramica')">Cerámica</button>
+        <button class="filtro" onclick="filtrar(this, 'accesorios')">Accesorios</button>
+      </div>
+
+      <div class="productos-grid">
+        <div class="card" data-cat="lavado">
+          <div class="card-badge">Más vendido</div>
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=400&q=80" alt="Shampoo pH Neutro" />
+          </div>
+          <div class="card-body">
+            <span class="card-cat">Lavado</span>
+            <h3>Shampoo pH Neutro 1L</h3>
+            <p>Fórmula concentrada, segura para ceras y cerámicas. Alta espuma.</p>
+            <div class="card-price">
+              <span class="price">$4.500</span>
+              <button class="btn-card">Consultar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" data-cat="pulido">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Pulidor de Corte" />
+          </div>
+          <div class="card-body">
+            <span class="card-cat">Pulido</span>
+            <h3>Pulidor de Corte Medio</h3>
+            <p>Elimina rayones finos y swirls. Compatible con pulidoras orbitales.</p>
+            <div class="card-price">
+              <span class="price">$8.900</span>
+              <button class="btn-card">Consultar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" data-cat="ceramica">
+          <div class="card-badge new">Nuevo</div>
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&q=80" alt="Recubrimiento Cerámico" />
+          </div>
+          <div class="card-body">
+            <span class="card-cat">Cerámica</span>
+            <h3>Recubrimiento Cerámico 9H</h3>
+            <p>Protección duradera hasta 2 años. Hidrofóbico y antiarañazos.</p>
+            <div class="card-price">
+              <span class="price">$24.000</span>
+              <button class="btn-card">Consultar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" data-cat="lavado">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80" alt="Desengrasante" />
+          </div>
+          <div class="card-body">
+            <span class="card-cat">Lavado</span>
+            <h3>Desengrasante All-Purpose</h3>
+            <p>Para motor, llantas y tapizados. Acción rápida sin dañar superficies.</p>
+            <div class="card-price">
+              <span class="price">$3.200</span>
+              <button class="btn-card">Consultar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" data-cat="accesorios">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=400&q=80" alt="Kit Microfibras" />
+          </div>
+          <div class="card-body">
+            <span class="card-cat">Accesorios</span>
+            <h3>Kit Microfibras Premium x6</h3>
+            <p>Alta densidad, sin pelusa. Para aplicar y retirar productos sin rayar.</p>
+            <div class="card-price">
+              <span class="price">$5.800</span>
+              <button class="btn-card">Consultar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" data-cat="pulido">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80" alt="Cera Carnauba" />
+          </div>
+          <div class="card-body">
+            <span class="card-cat">Pulido</span>
+            <h3>Cera Carnauba Gold</h3>
+            <p>Brillo espejo de larga duración. Protección UV y repelente al agua.</p>
+            <div class="card-price">
+              <span class="price">$7.500</span>
+              <button class="btn-card">Consultar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resenas" class="resenas">
+      <div class="section-header">
+        <p class="section-tag">Opiniones</p>
+        <h2>LO QUE DICEN <span class="accent">NUESTROS CLIENTES</span></h2>
+        <p class="section-sub">Más de 500 clientes satisfechos en Villa Urquiza y alrededores</p>
+      </div>
+
+      <div class="resenas-grid">
+        <div class="resena-card">
+          <div class="resena-stars">★★★★★</div>
+          <p>"Llevé mi moto y quedó impecable. El recubrimiento cerámico la dejó brillando como nueva. 100% recomendable."</p>
+          <div class="resena-autor">
+            <div class="autor-avatar">MG</div>
+            <div><strong>Matías G.</strong><span>Honda CG 150</span></div>
+          </div>
+        </div>
+
+        <div class="resena-card destacada">
+          <div class="resena-stars">★★★★★</div>
+          <p>"Los productos que venden son de primera calidad. El shampoo pH neutro es lo mejor que usé para mi auto. Ya compré 3 veces."</p>
+          <div class="resena-autor">
+            <div class="autor-avatar">LP</div>
+            <div><strong>Laura P.</strong><span>Toyota Corolla</span></div>
+          </div>
+        </div>
+
+        <div class="resena-card">
+          <div class="resena-stars">★★★★★</div>
+          <p>"El pulido sacó rayones que pensé eran permanentes. El equipo muy profesional y el resultado es espectacular."</p>
+          <div class="resena-autor">
+            <div class="autor-avatar">RV</div>
+            <div><strong>Ricardo V.</strong><span>Ford Focus</span></div>
+          </div>
+        </div>
+
+        <div class="resena-card">
+          <div class="resena-stars">★★★★☆</div>
+          <p>"Muy buena atención y los productos llegan rápido. El desengrasante es clave para las llantas. Lo recomiendo."</p>
+          <div class="resena-autor">
+            <div class="autor-avatar">SC</div>
+            <div><strong>Sofía C.</strong><span>Volkswagen Polo</span></div>
+          </div>
+        </div>
+
+        <div class="resena-card">
+          <div class="resena-stars">★★★★★</div>
+          <p>"Increíble la diferencia con la cerámica. El agua escurre sola y el auto siempre parece recién lavado. Vale cada peso."</p>
+          <div class="resena-autor">
+            <div class="autor-avatar">FM</div>
+            <div><strong>Fernando M.</strong><span>Chevrolet Cruze</span></div>
+          </div>
+        </div>
+
+        <div class="resena-card">
+          <div class="resena-stars">★★★★★</div>
+          <p>"Las microfibras son buenísimas, nada que ver con las genéricas. No rayan y duran mucho. Ya pedí el segundo kit."</p>
+          <div class="resena-autor">
+            <div class="autor-avatar">NC</div>
+            <div><strong>Nicolás C.</strong><span>Peugeot 208</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="contacto">
+      <div class="contacto-inner">
+        <div class="contacto-info">
+          <p class="section-tag">Contacto</p>
+          <h2>LISTO PARA EL <span class="accent">SIGUIENTE NIVEL?</span></h2>
+          <p>Consultanos por productos, turnos o envíos. Respondemos rápido por WhatsApp e Instagram.</p>
+          <ul class="contacto-datos">
+            <li>📍 Villa Urquiza, CABA, Argentina</li>
+            <li>📸 <a href="https://www.instagram.com/crowdetailing.arg/" target="_blank">@crowdetailing.arg</a></li>
+            <li>🕐 Lun–Sáb: 9:00 a 19:00</li>
+          </ul>
+          <div class="contacto-map">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13142.5!2d-58.489!3d-34.582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb5b9fcf5c955%3A0x1cd36c3e6bb96bff!2sVilla%20Urquiza%2C%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1"
+              width="100%"
+              height="200"
+              style="border:0; border-radius:10px;"
+              allowfullscreen=""
+              loading="lazy"
+              title="Ubicación Crow Detailing - Villa Urquiza">
+            </iframe>
+          </div>
+        </div>
+
+        <div class="contacto-form-wrap">
+          <form class="contacto-form" action="https://formspree.io/f/xyzgpbjw" method="POST">
+            <h3>Envianos un mensaje</h3>
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Correo electrónico</label>
+              <input type="email" id="email" name="email" placeholder="tucorreo@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" rows="5" placeholder="Contanos en qué te podemos ayudar..." required></textarea>
+            </div>
+            <button type="submit" class="btn-primary full">Enviar Mensaje →</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon small">
+            <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M40 5 L10 25 L18 22 L15 40 L25 32 L28 45 L40 35 L52 45 L55 32 L65 40 L62 22 L70 25 Z" stroke="white" stroke-width="2" fill="none"/>
+              <path d="M30 35 L35 50 L40 42 L45 50 L50 35" stroke="white" stroke-width="1.5" fill="none"/>
+            </svg>
+          </div>
+          <div class="logo-text">
+            <span class="logo-crow">CROW</span>
+            <span class="logo-detailing">DETAILING</span>
+          </div>
+        </div>
+        <p>Cuidado profesional para tu vehículo.<br/>Villa Urquiza, CABA.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#productos">Productos</a></li>
+          <li><a href="#resenas">Reseñas</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Categorías</h4>
+        <ul>
+          <li><a href="#productos">Lavado Premium</a></li>
+          <li><a href="#productos">Pulido Profesional</a></li>
+          <li><a href="#productos">Protección Cerámica</a></li>
+          <li><a href="#productos">Accesorios</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Seguinos</h4>
+        <a href="https://www.instagram.com/crowdetailing.arg/" target="_blank" class="social-link">📸 Instagram</a>
+        <p class="footer-horario">Lun–Sáb: 9:00 a 19:00<br/>Turnos por privado</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Crow Detailing · Todos los derechos reservados · Villa Urquiza, CABA</p>
+    </div>
+  </footer>
+
+  <script>
+    function filtrar(btn, cat) {
+      document.querySelectorAll('.filtro').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.card').forEach(card => {
+        card.style.display = (cat === 'todos' || card.dataset.cat === cat) ? 'flex' : 'none';
+      });
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
+    });
+  </script>
+
+</body>
+</html>
