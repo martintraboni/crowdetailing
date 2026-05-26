@@ -1,4 +1,4 @@
-# 🐦‍⬛ Crow Detailing — Tienda de Productos Premium
+# 🐦‍⬛ Crow Detailing | Tienda de Productos Premium
 
 Sitio web de e-commerce para **Crow Detailing**, tienda especializada en productos de detailing profesional para autos y motos. Ubicada en Villa Urquiza, CABA, Argentina.
 
