@@ -48,7 +48,7 @@ crowdetailing/
 | Multimedia | Video embed (YouTube) en hero, iframe de Google Maps en contacto |
 | Navegación | Lista desordenada con enlaces internos (Inicio, Productos, Reseñas, Contacto) |
 
----
+
 
 ## 🎨 Identidad visual
 
@@ -56,7 +56,7 @@ crowdetailing/
 - **Tipografías**: Bebas Neue (títulos), Rajdhani (subtítulos), Inter (cuerpo)
 - **Estilo**: Dark theme premium, inspirado en la marca real de Crow Detailing
 
----
+
 
 ## 🚀 Cómo usar
 
@@ -64,18 +64,18 @@ crowdetailing/
 2. Abrir index.html en el navegador
 3. Para activar el formulario: reemplazar el endpoint de Formspree en el action del form con tu propio ID
 
----
+
 
 ## 🌐 Deploy
 
 Publicado en GitHub Pages / Netlify (agregar URL aquí una vez publicado)
 
----
+
 
 ## 📸 Redes
 
 Instagram: @crowdetailing.arg — https://www.instagram.com/crowdetailing.arg/
 
----
+
 
 Proyecto desarrollado como pre-entrega del curso de Desarrollo Web Frontend.
