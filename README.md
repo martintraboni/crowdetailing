@@ -8,7 +8,7 @@ Sitio web de e-commerce para **Crow Detailing**, tienda especializada en product
 
 Crow Detailing ofrece productos premium para el cuidado y estética vehicular: shampoos pH neutro, pulidores, recubrimientos cerámicos, ceras y accesorios. Este sitio fue construido como catálogo web con formulario de contacto integrado.
 
----
+
 
 ## 🗂️ Estructura del proyecto
 
@@ -19,7 +19,7 @@ crowdetailing/
 └── README.md       → Este archivo
 ```
 
----
+
 
 ## 🧱 Secciones del sitio
 
@@ -31,7 +31,7 @@ crowdetailing/
 - **Contacto** — Formulario con Formspree + mapa embed
 - **Footer** — Links, categorías, redes sociales y datos de la tienda
 
----
+
 
 ## ✅ Requisitos técnicos implementados
 
