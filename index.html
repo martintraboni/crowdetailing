@@ -3,22 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Crow Detailing | Tienda de Productos Premium</title>
+  <title>Crow Detailing | Detailing Profesional · Villa Urquiza</title>
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
 </head>
 <body>
 
+  <!-- ===== HEADER ===== -->
   <header>
     <div class="header-inner">
       <div class="logo">
-        <div class="logo-icon">
-          <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M40 5 L10 25 L18 22 L15 40 L25 32 L28 45 L40 35 L52 45 L55 32 L65 40 L62 22 L70 25 Z" stroke="white" stroke-width="2" fill="none"/>
-            <path d="M30 35 L35 50 L40 42 L45 50 L50 35" stroke="white" stroke-width="1.5" fill="none"/>
-            <path d="M36 28 L40 20 L44 28 L40 32 Z" stroke="white" stroke-width="1.5" fill="none"/>
-          </svg>
-        </div>
+        <img src="logocrowdet.jpeg" alt="Crow Detailing Logo" class="logo-img" />
         <div class="logo-text">
           <span class="logo-crow">CROW</span>
           <span class="logo-detailing">DETAILING</span>
@@ -27,19 +22,22 @@
       <nav>
         <ul>
           <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#servicios">Servicios</a></li>
           <li><a href="#productos">Productos</a></li>
+          <li><a href="#trabajos">Nuestros Trabajos</a></li>
           <li><a href="#resenas">Reseñas</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
       </nav>
       <div class="header-actions">
-        <a href="#contacto" class="btn-header">Consultar</a>
+        <a href="#contacto" class="btn-header">Sacar Turno</a>
       </div>
     </div>
   </header>
 
   <main>
 
+    <!-- ===== HERO ===== -->
     <section id="inicio" class="hero">
       <div class="hero-bg-glow"></div>
       <div class="hero-content">
@@ -51,8 +49,8 @@
         </h1>
         <p class="hero-sub">Productos premium de detailing para autos y motos. Lavado, pulido, cerámica y brillo profesional.</p>
         <div class="hero-btns">
-          <a href="#productos" class="btn-primary">Ver Productos</a>
-          <a href="#contacto" class="btn-outline">Consultar Turno</a>
+          <a href="#servicios" class="btn-primary">Ver Servicios</a>
+          <a href="#contacto" class="btn-outline">Sacar Turno</a>
         </div>
         <div class="hero-stats">
           <div class="stat"><span class="stat-num">500+</span><span class="stat-label">Clientes</span></div>
@@ -62,18 +60,12 @@
           <div class="stat"><span class="stat-num">3+</span><span class="stat-label">Años</span></div>
         </div>
       </div>
-      <div class="hero-video-wrap">
-        <iframe
-          src="https://www.youtube.com/embed/dQw4w9WgXcQ?mute=1&controls=1"
-          title="Crow Detailing - Video Presentación"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
-        <div class="video-label">Mirá cómo trabajamos</div>
+      <div class="hero-img-wrap">
+        <img src="lista_de_precios.jpeg" alt="Servicios Crow Detailing" class="hero-promo-img" />
       </div>
     </section>
 
+    <!-- ===== BARRA DE SERVICIOS ===== -->
     <section class="servicios-bar">
       <div class="servicios-inner">
         <div class="servicio-item">
@@ -95,11 +87,76 @@
       </div>
     </section>
 
+    <!-- ===== SERVICIOS / COMBOS ===== -->
+    <section id="servicios" class="servicios">
+      <div class="section-header">
+        <p class="section-tag">Servicios</p>
+        <h2>NUESTROS <span class="accent">COMBOS</span></h2>
+        <p class="section-sub">Turnos disponibles los Sábados y Domingos a partir de las 8:00 hs. Coordiná por privado.</p>
+      </div>
+
+      <div class="combos-grid">
+        <div class="combo-card">
+          <div class="combo-icon">✔️</div>
+          <h3>Lavado Clásico</h3>
+          <ul>
+            <li>Lavado completo</li>
+            <li>Limpieza de llantas</li>
+            <li>Nutrición de plásticos</li>
+            <li>Aplicación de cera rápida</li>
+          </ul>
+          <div class="combo-price">$15.000</div>
+          <a href="https://www.instagram.com/crowdetailing.arg/" target="_blank" class="btn-primary">Sacar Turno</a>
+        </div>
+
+        <div class="combo-card destacado">
+          <div class="combo-badge">Más elegido</div>
+          <div class="combo-icon">⭐</div>
+          <h3>Lavado Premium</h3>
+          <ul>
+            <li>Lavado detallado completo</li>
+            <li>Desengrase de motor y chasis</li>
+            <li>Aplicación de cera rápida</li>
+            <li>Nutrido de plásticos</li>
+          </ul>
+          <div class="combo-price">$20.000</div>
+          <a href="https://www.instagram.com/crowdetailing.arg/" target="_blank" class="btn-primary">Sacar Turno</a>
+        </div>
+
+        <div class="combo-card">
+          <div class="combo-icon">🖤</div>
+          <h3>Protección Premium</h3>
+          <ul>
+            <li>Lavado premium</li>
+            <li>Abrillantado</li>
+            <li>Protección hidrofóbica</li>
+          </ul>
+          <div class="combo-price">$30.000</div>
+          <a href="https://www.instagram.com/crowdetailing.arg/" target="_blank" class="btn-primary">Sacar Turno</a>
+        </div>
+
+        <div class="combo-card">
+          <div class="combo-icon">🔥</div>
+          <h3>Detailing Profesional</h3>
+          <ul>
+            <li>Lavado descontaminante</li>
+            <li>Lavado premium avanzado</li>
+            <li>Corrección de pintura</li>
+          </ul>
+          <div class="combo-price">$60.000</div>
+          <a href="https://www.instagram.com/crowdetailing.arg/" target="_blank" class="btn-primary">Sacar Turno</a>
+        </div>
+      </div>
+
+      <p class="turnos-nota">📅 Turnos disponibles Sábados y Domingos desde las 8:00 hs · Coordiná el día y horario por Instagram</p>
+    </section>
+
+    <!-- ===== PRODUCTOS ===== -->
     <section id="productos" class="productos">
       <div class="section-header">
         <p class="section-tag">Catálogo</p>
         <h2>NUESTROS <span class="accent">PRODUCTOS</span></h2>
-        <p class="section-sub">Todo lo que necesitás para el cuidado profesional de tu vehículo</p>
+        <p class="section-sub">Marcas premium: Toxic Shine y Vonixx. Todo para el cuidado profesional de tu vehículo.</p>
       </div>
 
       <div class="filtros">
@@ -111,100 +168,172 @@
       </div>
 
       <div class="productos-grid">
-        <div class="card" data-cat="lavado">
+
+        <div class="card" data-cat="lavado" data-stock="10">
           <div class="card-badge">Más vendido</div>
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=400&q=80" alt="Shampoo pH Neutro" />
+            <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=400&q=80" alt="Shampoo pH Neutro Toxic Shine" />
           </div>
           <div class="card-body">
+            <span class="card-marca">Toxic Shine</span>
             <span class="card-cat">Lavado</span>
             <h3>Shampoo pH Neutro 1L</h3>
-            <p>Fórmula concentrada, segura para ceras y cerámicas. Alta espuma.</p>
+            <p>Fórmula concentrada y segura para ceras y cerámicas. Alta espuma, ideal para lavado a mano sin dañar la protección aplicada.</p>
+            <div class="stock-badge" data-stock="10"></div>
             <div class="card-price">
               <span class="price">$4.500</span>
-              <button class="btn-card">Consultar</button>
+              <button class="btn-card" onclick="agregarCarrito(this, 'Shampoo pH Neutro 1L', 4500)">Agregar al Carrito</button>
             </div>
           </div>
         </div>
 
-        <div class="card" data-cat="pulido">
+        <div class="card" data-cat="pulido" data-stock="5">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Pulidor de Corte" />
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Pulidor de Corte Vonixx" />
           </div>
           <div class="card-body">
+            <span class="card-marca">Vonixx</span>
             <span class="card-cat">Pulido</span>
             <h3>Pulidor de Corte Medio</h3>
-            <p>Elimina rayones finos y swirls. Compatible con pulidoras orbitales.</p>
+            <p>Elimina rayones finos, swirls y marcas de agua. Compatible con pulidoras orbitales y rotativas. Alto rendimiento.</p>
+            <div class="stock-badge" data-stock="5"></div>
             <div class="card-price">
               <span class="price">$8.900</span>
-              <button class="btn-card">Consultar</button>
+              <button class="btn-card" onclick="agregarCarrito(this, 'Pulidor de Corte Medio', 8900)">Agregar al Carrito</button>
             </div>
           </div>
         </div>
 
-        <div class="card" data-cat="ceramica">
+        <div class="card" data-cat="ceramica" data-stock="3">
           <div class="card-badge new">Nuevo</div>
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&q=80" alt="Recubrimiento Cerámico" />
+            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&q=80" alt="Recubrimiento Cerámico Vonixx" />
           </div>
           <div class="card-body">
+            <span class="card-marca">Vonixx</span>
             <span class="card-cat">Cerámica</span>
             <h3>Recubrimiento Cerámico 9H</h3>
-            <p>Protección duradera hasta 2 años. Hidrofóbico y antiarañazos.</p>
+            <p>Protección duradera hasta 2 años. Efecto hidrofóbico extremo, antiarañazos y resistente a productos químicos.</p>
+            <div class="stock-badge" data-stock="3"></div>
             <div class="card-price">
               <span class="price">$24.000</span>
-              <button class="btn-card">Consultar</button>
+              <button class="btn-card" onclick="agregarCarrito(this, 'Recubrimiento Cerámico 9H', 24000)">Agregar al Carrito</button>
             </div>
           </div>
         </div>
 
-        <div class="card" data-cat="lavado">
+        <div class="card" data-cat="lavado" data-stock="8">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80" alt="Desengrasante" />
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80" alt="Desengrasante Toxic Shine" />
           </div>
           <div class="card-body">
+            <span class="card-marca">Toxic Shine</span>
             <span class="card-cat">Lavado</span>
             <h3>Desengrasante All-Purpose</h3>
-            <p>Para motor, llantas y tapizados. Acción rápida sin dañar superficies.</p>
+            <p>Multiuso para motor, llantas y tapizados. Acción rápida, no daña superficies ni plásticos. Concentrado.</p>
+            <div class="stock-badge" data-stock="8"></div>
             <div class="card-price">
               <span class="price">$3.200</span>
-              <button class="btn-card">Consultar</button>
+              <button class="btn-card" onclick="agregarCarrito(this, 'Desengrasante All-Purpose', 3200)">Agregar al Carrito</button>
             </div>
           </div>
         </div>
 
-        <div class="card" data-cat="accesorios">
+        <div class="card" data-cat="accesorios" data-stock="2">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=400&q=80" alt="Kit Microfibras" />
+            <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=400&q=80" alt="Kit Microfibras Premium" />
           </div>
           <div class="card-body">
+            <span class="card-marca">Toxic Shine</span>
             <span class="card-cat">Accesorios</span>
             <h3>Kit Microfibras Premium x6</h3>
-            <p>Alta densidad, sin pelusa. Para aplicar y retirar productos sin rayar.</p>
+            <p>Alta densidad 380gsm, sin pelusa. Ideales para aplicar y retirar productos sin rayar la pintura. Lavables.</p>
+            <div class="stock-badge" data-stock="2"></div>
             <div class="card-price">
               <span class="price">$5.800</span>
-              <button class="btn-card">Consultar</button>
+              <button class="btn-card" onclick="agregarCarrito(this, 'Kit Microfibras Premium x6', 5800)">Agregar al Carrito</button>
             </div>
           </div>
         </div>
 
-        <div class="card" data-cat="pulido">
+        <div class="card" data-cat="pulido" data-stock="0">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80" alt="Cera Carnauba" />
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80" alt="Cera Carnauba Vonixx" />
           </div>
           <div class="card-body">
+            <span class="card-marca">Vonixx</span>
             <span class="card-cat">Pulido</span>
             <h3>Cera Carnauba Gold</h3>
-            <p>Brillo espejo de larga duración. Protección UV y repelente al agua.</p>
+            <p>Brillo espejo de larga duración con protección UV. Repelente al agua, fácil aplicación y remoción.</p>
+            <div class="stock-badge" data-stock="0"></div>
             <div class="card-price">
               <span class="price">$7.500</span>
-              <button class="btn-card">Consultar</button>
+              <button class="btn-card disabled" disabled>Sin Stock</button>
             </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Carrito -->
+      <div class="carrito-wrap" id="carrito" style="display:none;">
+        <h3>🛒 Carrito</h3>
+        <ul id="carrito-lista"></ul>
+        <div class="carrito-total">Total: <strong id="carrito-total">$0</strong></div>
+        <a href="https://www.instagram.com/crowdetailing.arg/" target="_blank" class="btn-primary">Consultar pedido por Instagram →</a>
+      </div>
+
+    </section>
+
+    <!-- ===== NUESTROS TRABAJOS ===== -->
+    <section id="trabajos" class="trabajos">
+      <div class="section-header">
+        <p class="section-tag">Galería</p>
+        <h2>NUESTROS <span class="accent">TRABAJOS</span></h2>
+        <p class="section-sub">Resultados reales de nuestros clientes. Así queda tu vehículo con Crow Detailing.</p>
+      </div>
+      <div class="trabajos-grid">
+        <div class="trabajo-card placeholder">
+          <div class="placeholder-content">
+            <span>📸</span>
+            <p>Próximamente</p>
+          </div>
+        </div>
+        <div class="trabajo-card placeholder">
+          <div class="placeholder-content">
+            <span>📸</span>
+            <p>Próximamente</p>
+          </div>
+        </div>
+        <div class="trabajo-card placeholder">
+          <div class="placeholder-content">
+            <span>📸</span>
+            <p>Próximamente</p>
+          </div>
+        </div>
+        <div class="trabajo-card placeholder">
+          <div class="placeholder-content">
+            <span>📸</span>
+            <p>Próximamente</p>
+          </div>
+        </div>
+        <div class="trabajo-card placeholder">
+          <div class="placeholder-content">
+            <span>📸</span>
+            <p>Próximamente</p>
+          </div>
+        </div>
+        <div class="trabajo-card placeholder">
+          <div class="placeholder-content">
+            <span>📸</span>
+            <p>Próximamente</p>
           </div>
         </div>
       </div>
+      <p class="trabajos-ig">Seguinos en <a href="https://www.instagram.com/crowdetailing.arg/" target="_blank">@crowdetailing.arg</a> para ver todos los trabajos</p>
     </section>
 
+    <!-- ===== RESEÑAS ===== -->
     <section id="resenas" class="resenas">
       <div class="section-header">
         <p class="section-tag">Opiniones</p>
@@ -221,16 +350,14 @@
             <div><strong>Matías G.</strong><span>Honda CG 150</span></div>
           </div>
         </div>
-
         <div class="resena-card destacada">
           <div class="resena-stars">★★★★★</div>
-          <p>"Los productos que venden son de primera calidad. El shampoo pH neutro es lo mejor que usé para mi auto. Ya compré 3 veces."</p>
+          <p>"El Lavado Premium dejó el auto como nuevo. Atención de primera y el resultado habla solo. Ya saqué el segundo turno."</p>
           <div class="resena-autor">
             <div class="autor-avatar">LP</div>
             <div><strong>Laura P.</strong><span>Toyota Corolla</span></div>
           </div>
         </div>
-
         <div class="resena-card">
           <div class="resena-stars">★★★★★</div>
           <p>"El pulido sacó rayones que pensé eran permanentes. El equipo muy profesional y el resultado es espectacular."</p>
@@ -239,16 +366,14 @@
             <div><strong>Ricardo V.</strong><span>Ford Focus</span></div>
           </div>
         </div>
-
         <div class="resena-card">
           <div class="resena-stars">★★★★☆</div>
-          <p>"Muy buena atención y los productos llegan rápido. El desengrasante es clave para las llantas. Lo recomiendo."</p>
+          <p>"Muy buena atención, respondieron rápido por Instagram. El Detailing Profesional valió cada peso."</p>
           <div class="resena-autor">
             <div class="autor-avatar">SC</div>
             <div><strong>Sofía C.</strong><span>Volkswagen Polo</span></div>
           </div>
         </div>
-
         <div class="resena-card">
           <div class="resena-stars">★★★★★</div>
           <p>"Increíble la diferencia con la cerámica. El agua escurre sola y el auto siempre parece recién lavado. Vale cada peso."</p>
@@ -257,28 +382,28 @@
             <div><strong>Fernando M.</strong><span>Chevrolet Cruze</span></div>
           </div>
         </div>
-
         <div class="resena-card">
           <div class="resena-stars">★★★★★</div>
-          <p>"Las microfibras son buenísimas, nada que ver con las genéricas. No rayan y duran mucho. Ya pedí el segundo kit."</p>
+          <p>"Excelente trabajo en la moto. La protección hidrofóbica es una locura, el agua rebota literalmente. Lo recomiendo."</p>
           <div class="resena-autor">
             <div class="autor-avatar">NC</div>
-            <div><strong>Nicolás C.</strong><span>Peugeot 208</span></div>
+            <div><strong>Nicolás C.</strong><span>Yamaha MT-03</span></div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- ===== CONTACTO ===== -->
     <section id="contacto" class="contacto">
       <div class="contacto-inner">
         <div class="contacto-info">
           <p class="section-tag">Contacto</p>
           <h2>LISTO PARA EL <span class="accent">SIGUIENTE NIVEL?</span></h2>
-          <p>Consultanos por productos, turnos o envíos. Respondemos rápido por WhatsApp e Instagram.</p>
+          <p>Consultanos por productos, turnos y envíos. Respondemos a la brevedad en Instagram.</p>
           <ul class="contacto-datos">
             <li>📍 Villa Urquiza, CABA, Argentina</li>
             <li>📸 <a href="https://www.instagram.com/crowdetailing.arg/" target="_blank">@crowdetailing.arg</a></li>
-            <li>🕐 Lun–Sáb: 9:00 a 19:00</li>
+            <li>📅 Turnos: Sábados y Domingos desde las 8:00 hs</li>
           </ul>
           <div class="contacto-map">
             <iframe
@@ -294,38 +419,27 @@
         </div>
 
         <div class="contacto-form-wrap">
-          <form class="contacto-form" action="https://formspree.io/f/xyzgpbjw" method="POST">
-            <h3>Envianos un mensaje</h3>
-            <div class="form-group">
-              <label for="nombre">Nombre</label>
-              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required />
-            </div>
-            <div class="form-group">
-              <label for="email">Correo electrónico</label>
-              <input type="email" id="email" name="email" placeholder="tucorreo@email.com" required />
-            </div>
-            <div class="form-group">
-              <label for="mensaje">Mensaje</label>
-              <textarea id="mensaje" name="mensaje" rows="5" placeholder="Contanos en qué te podemos ayudar..." required></textarea>
-            </div>
-            <button type="submit" class="btn-primary full">Enviar Mensaje →</button>
-          </form>
+          <div class="contacto-ig-box">
+            <div class="ig-icon">📸</div>
+            <h3>PEDÍ TU TURNO ACÁ</h3>
+            <p>Escribinos directo por Instagram. Es más rápido y te respondemos a la brevedad para coordinar el día y horario.</p>
+            <a href="https://www.instagram.com/crowdetailing.arg/" target="_blank" class="btn-primary full ig-btn">
+              Ir a Instagram → @crowdetailing.arg
+            </a>
+            <p class="ig-nota">📅 Turnos disponibles Sábados y Domingos desde las 8:00 hs</p>
+          </div>
         </div>
       </div>
     </section>
 
   </main>
 
+  <!-- ===== FOOTER ===== -->
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">
         <div class="logo">
-          <div class="logo-icon small">
-            <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M40 5 L10 25 L18 22 L15 40 L25 32 L28 45 L40 35 L52 45 L55 32 L65 40 L62 22 L70 25 Z" stroke="white" stroke-width="2" fill="none"/>
-              <path d="M30 35 L35 50 L40 42 L45 50 L50 35" stroke="white" stroke-width="1.5" fill="none"/>
-            </svg>
-          </div>
+          <img src="logocrowdet.jpeg" alt="Crow Detailing" class="logo-img small" />
           <div class="logo-text">
             <span class="logo-crow">CROW</span>
             <span class="logo-detailing">DETAILING</span>
@@ -337,32 +451,35 @@
         <h4>Navegación</h4>
         <ul>
           <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#servicios">Servicios</a></li>
           <li><a href="#productos">Productos</a></li>
+          <li><a href="#trabajos">Nuestros Trabajos</a></li>
           <li><a href="#resenas">Reseñas</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
       </div>
       <div class="footer-links">
-        <h4>Categorías</h4>
+        <h4>Servicios</h4>
         <ul>
-          <li><a href="#productos">Lavado Premium</a></li>
-          <li><a href="#productos">Pulido Profesional</a></li>
-          <li><a href="#productos">Protección Cerámica</a></li>
-          <li><a href="#productos">Accesorios</a></li>
+          <li><a href="#servicios">Lavado Clásico</a></li>
+          <li><a href="#servicios">Lavado Premium</a></li>
+          <li><a href="#servicios">Protección Premium</a></li>
+          <li><a href="#servicios">Detailing Profesional</a></li>
         </ul>
       </div>
       <div class="footer-social">
         <h4>Seguinos</h4>
-        <a href="https://www.instagram.com/crowdetailing.arg/" target="_blank" class="social-link">📸 Instagram</a>
-        <p class="footer-horario">Lun–Sáb: 9:00 a 19:00<br/>Turnos por privado</p>
+        <a href="https://www.instagram.com/crowdetailing.arg/" target="_blank" class="social-link">📸 @crowdetailing.arg</a>
+        <p class="footer-horario">Turnos: Sáb y Dom desde las 8:00 hs<br/>Coordiná por privado</p>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2024 Crow Detailing · Todos los derechos reservados · Villa Urquiza, CABA</p>
+      <p>© 2025 Crow Detailing · Todos los derechos reservados · Villa Urquiza, CABA</p>
     </div>
   </footer>
 
   <script>
+    // Filtro productos
     function filtrar(btn, cat) {
       document.querySelectorAll('.filtro').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
@@ -370,12 +487,61 @@
         card.style.display = (cat === 'todos' || card.dataset.cat === cat) ? 'flex' : 'none';
       });
     }
+
+    // Stock badges
+    document.querySelectorAll('.stock-badge').forEach(badge => {
+      const stock = parseInt(badge.dataset.stock);
+      if (stock === 0) {
+        badge.textContent = '🔴 Sin stock';
+        badge.className = 'stock-badge sin-stock';
+      } else if (stock <= 3) {
+        badge.textContent = `🟠 Últimas ${stock} unidades`;
+        badge.className = 'stock-badge poco-stock';
+      } else {
+        badge.textContent = `🟢 En stock (${stock} unid.)`;
+        badge.className = 'stock-badge en-stock';
+      }
+    });
+
+    // Carrito
+    let carrito = [];
+    function agregarCarrito(btn, nombre, precio) {
+      carrito.push({ nombre, precio });
+      renderCarrito();
+      btn.textContent = '✓ Agregado';
+      btn.style.background = 'var(--purple)';
+      btn.style.color = 'white';
+      setTimeout(() => {
+        btn.textContent = 'Agregar al Carrito';
+        btn.style.background = '';
+        btn.style.color = '';
+      }, 1500);
+    }
+    function renderCarrito() {
+      const wrap = document.getElementById('carrito');
+      const lista = document.getElementById('carrito-lista');
+      const total = document.getElementById('carrito-total');
+      wrap.style.display = 'block';
+      lista.innerHTML = carrito.map((item, i) =>
+        `<li>${item.nombre} — $${item.precio.toLocaleString('es-AR')} <button onclick="quitarCarrito(${i})">✕</button></li>`
+      ).join('');
+      total.textContent = '$' + carrito.reduce((s, i) => s + i.precio, 0).toLocaleString('es-AR');
+      if (carrito.length === 0) wrap.style.display = 'none';
+    }
+    function quitarCarrito(i) {
+      carrito.splice(i, 1);
+      renderCarrito();
+    }
+
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         e.preventDefault();
         document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
       });
     });
+
+    // Header scroll
     window.addEventListener('scroll', () => {
       document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
     });
