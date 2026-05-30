@@ -2,13 +2,13 @@
 
 Sitio web de e-commerce para **Crow Detailing**, tienda especializada en productos de detailing profesional para autos y motos. Ubicada en Villa Urquiza, CABA, Argentina.
 
-
+---
 
 ## 📋 Descripción
 
 Crow Detailing ofrece productos premium para el cuidado y estética vehicular: shampoos pH neutro, pulidores, recubrimientos cerámicos, ceras y accesorios. Este sitio fue construido como catálogo web con formulario de contacto integrado.
 
-
+---
 
 ## 🗂️ Estructura del proyecto
 
@@ -19,7 +19,7 @@ crowdetailing/
 └── README.md       → Este archivo
 ```
 
-
+---
 
 ## 🧱 Secciones del sitio
 
@@ -31,7 +31,7 @@ crowdetailing/
 - **Contacto** — Formulario con Formspree + mapa embed
 - **Footer** — Links, categorías, redes sociales y datos de la tienda
 
-
+---
 
 ## ✅ Requisitos técnicos implementados
 
@@ -48,7 +48,7 @@ crowdetailing/
 | Multimedia | Video embed (YouTube) en hero, iframe de Google Maps en contacto |
 | Navegación | Lista desordenada con enlaces internos (Inicio, Productos, Reseñas, Contacto) |
 
-
+---
 
 ## 🎨 Identidad visual
 
@@ -56,7 +56,7 @@ crowdetailing/
 - **Tipografías**: Bebas Neue (títulos), Rajdhani (subtítulos), Inter (cuerpo)
 - **Estilo**: Dark theme premium, inspirado en la marca real de Crow Detailing
 
-
+---
 
 ## 🚀 Cómo usar
 
@@ -64,18 +64,18 @@ crowdetailing/
 2. Abrir index.html en el navegador
 3. Para activar el formulario: reemplazar el endpoint de Formspree en el action del form con tu propio ID
 
-
+---
 
 ## 🌐 Deploy
 
 Publicado en GitHub Pages / Netlify (agregar URL aquí una vez publicado)
 
-
+---
 
 ## 📸 Redes
 
 Instagram: @crowdetailing.arg — https://www.instagram.com/crowdetailing.arg/
 
-
+---
 
 Proyecto desarrollado como pre-entrega del curso de Desarrollo Web Frontend.

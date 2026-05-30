@@ -820,3 +820,191 @@ footer { background: var(--dark-card); border-top: 1px solid var(--dark-border);
 @media (max-width: 480px) {
   .trabajos-grid { grid-template-columns: 1fr; }
 }
+
+/* === CARRITO MEJORADO === */
+.carrito-wrap {
+  max-width: 640px;
+  margin: 48px auto 0;
+  background: var(--dark-card);
+  border: 1px solid var(--purple);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+.carrito-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.carrito-header h3 { font-size: 1.3rem; }
+.carrito-cerrar {
+  background: none;
+  border: none;
+  color: var(--gray);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.carrito-cerrar:hover { color: #f87171; }
+.carrito-wrap ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.carrito-wrap ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: var(--gray-light);
+  border-bottom: 1px solid var(--dark-border);
+  padding-bottom: 10px;
+}
+.carrito-wrap ul li span:first-child { flex: 1; }
+.carrito-wrap ul li button {
+  background: none;
+  border: none;
+  color: var(--gray);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  padding: 2px 6px;
+}
+.carrito-wrap ul li button:hover { color: #f87171; }
+.carrito-total {
+  font-family: var(--font-sub);
+  font-size: 1.2rem;
+  color: var(--white);
+  margin-bottom: 20px;
+  text-align: right;
+}
+.carrito-btns {
+  display: flex;
+  gap: 12px;
+}
+.carrito-btns .btn-outline,
+.carrito-btns .btn-primary {
+  flex: 1;
+  text-align: center;
+  padding: 12px;
+}
+
+/* === TICKET OVERLAY === */
+.ticket-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(6px);
+}
+.ticket {
+  background: var(--dark-card);
+  border: 1px solid var(--purple);
+  border-radius: var(--radius);
+  padding: 36px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 0 60px var(--purple-glow);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.ticket-logo {
+  font-family: var(--font-title);
+  font-size: 1.4rem;
+  color: var(--purple-light);
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.ticket h3 {
+  font-size: 1.6rem;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.ticket-sub {
+  font-size: 0.9rem;
+  color: var(--gray);
+  text-align: center;
+  margin-bottom: 24px;
+}
+.ticket-pago {
+  background: var(--dark);
+  border: 1px solid var(--dark-border);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.ticket-dato {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.ticket-label {
+  font-family: var(--font-sub);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--gray);
+  text-transform: uppercase;
+}
+.ticket-valor {
+  font-family: var(--font-sub);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.05em;
+}
+.ticket-valor.total-pago {
+  font-size: 1.4rem;
+  color: var(--purple-light);
+}
+.ticket-detalle {
+  margin-bottom: 20px;
+}
+.ticket-items-titulo {
+  font-family: var(--font-sub);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--gray);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.ticket-detalle ul {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ticket-detalle ul li {
+  font-size: 0.85rem;
+  color: var(--gray-light);
+  padding-left: 12px;
+  position: relative;
+}
+.ticket-detalle ul li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--purple-light);
+  font-size: 0.75rem;
+}
+.ticket-instrucciones {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ticket-instrucciones p {
+  font-size: 0.88rem;
+  color: var(--gray);
+  text-align: center;
+}
