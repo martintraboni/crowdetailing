@@ -29,20 +29,114 @@
         </ul>
       </nav>
       <div class="header-actions">
-        <a href="#contacto" class="btn-header">Sacar Turno</a>
+        <a href="#" class="btn-user" onclick="abrirRegistro();return false;">Creá tu cuenta</a>
+        <a href="#" class="btn-user" onclick="abrirLogin();return false;">Ingresá</a>
+        <a href="#" class="btn-user" onclick="abrirMisCompras();return false;">Mis Compras</a>
+        <button class="btn-carrito-icon" onclick="abrirCarritoModal()">
+          🛒 <span class="carrito-count" id="carrito-count">0</span>
+        </button>
       </div>
     </div>
   </header>
 
+  <!-- MODAL REGISTRO -->
+  <div class="modal-overlay" id="modal-registro" style="display:none;">
+    <div class="modal">
+      <div class="modal-header"><h3>Creá tu cuenta</h3><button onclick="cerrarModal('modal-registro')">✕</button></div>
+      <div class="modal-body">
+        <div class="form-group"><label>Nombre y Apellido</label><input type="text" id="reg-nombre" placeholder="Tu nombre completo" /></div>
+        <div class="form-group"><label>Usuario</label><input type="text" id="reg-usuario" placeholder="Elegí un usuario" /></div>
+        <div class="form-group"><label>Mail</label><input type="email" id="reg-mail" placeholder="tucorreo@email.com" /></div>
+        <div class="form-group"><label>Número de teléfono</label><input type="tel" id="reg-tel" placeholder="Tu número de teléfono" /></div>
+        <div class="form-group"><label>Contraseña</label><input type="password" id="reg-pass" placeholder="Elegí una contraseña" /></div>
+        <button class="btn-primary full" onclick="registrar()">Crear cuenta</button>
+        <p class="modal-link">¿Ya tenés cuenta? <a href="#" onclick="cerrarModal('modal-registro');abrirLogin();return false;">Ingresá acá</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL LOGIN -->
+  <div class="modal-overlay" id="modal-login" style="display:none;">
+    <div class="modal">
+      <div class="modal-header"><h3>Ingresá</h3><button onclick="cerrarModal('modal-login')">✕</button></div>
+      <div class="modal-body">
+        <div class="form-group"><label>Usuario</label><input type="text" id="login-usuario" placeholder="Tu usuario" /></div>
+        <div class="form-group"><label>Contraseña</label><input type="password" id="login-pass" placeholder="Tu contraseña" /></div>
+        <button class="btn-primary full" onclick="login()">Ingresar</button>
+        <p class="modal-link">¿No tenés cuenta? <a href="#" onclick="cerrarModal('modal-login');abrirRegistro();return false;">Creá una acá</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL MIS COMPRAS -->
+  <div class="modal-overlay" id="modal-compras" style="display:none;">
+    <div class="modal modal-wide">
+      <div class="modal-header"><h3>Mis Compras</h3><button onclick="cerrarModal('modal-compras')">✕</button></div>
+      <div class="modal-body" id="compras-contenido"></div>
+    </div>
+  </div>
+
+  <!-- MODAL CARRITO -->
+  <div class="modal-overlay" id="modal-carrito" style="display:none;">
+    <div class="modal modal-wide">
+      <div class="modal-header"><h3>🛒 Tu Carrito</h3><button onclick="cerrarModal('modal-carrito')">✕</button></div>
+      <div class="modal-body">
+        <div id="carrito-modal-lista"></div>
+        <div class="carrito-modal-total">Total: <strong id="carrito-modal-total">$0</strong></div>
+        <button class="btn-outline full" onclick="cerrarModal('modal-carrito');document.getElementById('productos').scrollIntoView({behavior:'smooth'})">← Seguir Comprando</button>
+        <button class="btn-primary full" style="margin-top:10px;" onclick="finalizarCompra()">Comprar →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL PRODUCTO -->
+  <div class="modal-overlay" id="modal-producto" style="display:none;">
+    <div class="modal modal-producto">
+      <div class="modal-header"><h3 id="mp-nombre"></h3><button onclick="cerrarModal('modal-producto')">✕</button></div>
+      <div class="modal-body modal-producto-body">
+        <img id="mp-img" src="" alt="" />
+        <div class="mp-info">
+          <span id="mp-marca" class="card-marca"></span>
+          <span id="mp-cat" class="card-cat"></span>
+          <p id="mp-desc"></p>
+          <div id="mp-stock" class="stock-badge"></div>
+          <button class="btn-primary" id="mp-btn" style="margin-top:16px;width:100%;">Agregar al Carrito</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TICKET PAGO -->
+  <div class="ticket-overlay" id="ticket-overlay" style="display:none;">
+    <div class="ticket">
+      <div class="ticket-logo">🐦‍⬛ CROW DETAILING</div>
+      <h3>¡Gracias por tu compra!</h3>
+      <p class="ticket-sub">Realizá la transferencia y enviá el comprobante por Instagram.</p>
+      <div class="ticket-pago">
+        <div class="ticket-dato"><span class="ticket-label">ALIAS</span><span class="ticket-valor">ALIAS-AQUI</span></div>
+        <div class="ticket-dato"><span class="ticket-label">CBU</span><span class="ticket-valor">CBU-AQUI</span></div>
+        <div class="ticket-dato"><span class="ticket-label">TOTAL</span><span class="ticket-valor total-pago" id="ticket-monto"></span></div>
+      </div>
+      <div class="ticket-detalle">
+        <p class="ticket-items-titulo">Detalle del pedido:</p>
+        <ul id="ticket-items"></ul>
+      </div>
+      <div class="ticket-instrucciones">
+        <p>📲 Una vez transferido, enviá el comprobante a nuestro Instagram:</p>
+        <a href="https://www.instagram.com/crowdetailing.arg/" target="_blank" class="btn-primary full">Enviar comprobante → @crowdetailing.arg</a>
+      </div>
+      <button class="btn-outline full" onclick="cerrarTicket()" style="margin-top:12px;">Cerrar</button>
+    </div>
+  </div>
+
   <main>
 
-    <!-- HERO -->
     <section id="inicio" class="hero">
       <div class="hero-bg-glow"></div>
       <div class="hero-content">
         <p class="hero-tag">Detailing Profesional · Villa Urquiza, CABA</p>
         <h1 class="hero-title">PROTEGE<br/><span class="hero-accent">TU VEHÍCULO</span><br/>COMO MERECE</h1>
-        <p class="hero-sub">Productos premium Toxic Shine y Vonixx para autos y motos. Lavado, pulido, cerámica y brillo profesional.</p>
+        <p class="hero-sub">Productos premium Toxic Shine para autos y motos. Lavado, pulido, cerámica y brillo profesional.</p>
         <div class="hero-btns">
           <a href="#productos" class="btn-primary">Ver Productos</a>
           <a href="#contacto" class="btn-outline">Sacar Turno</a>
@@ -60,7 +154,6 @@
       </div>
     </section>
 
-    <!-- SERVICIOS BAR -->
     <section class="servicios-bar">
       <div class="servicios-inner">
         <div class="servicio-item"><span class="serv-icon">💧</span><div><strong>Lavado Premium</strong><p>Sin contacto ni marcas</p></div></div>
@@ -70,7 +163,6 @@
       </div>
     </section>
 
-    <!-- COMBOS -->
     <section id="servicios" class="servicios">
       <div class="section-header">
         <p class="section-tag">Servicios</p>
@@ -78,656 +170,36 @@
         <p class="section-sub">Turnos disponibles los Sábados y Domingos a partir de las 8:00 hs. Coordiná por privado.</p>
       </div>
       <div class="combos-grid">
-        <div class="combo-card">
-          <div class="combo-icon">✔️</div>
-          <h3>Lavado Clásico</h3>
-          <ul><li>Lavado completo</li><li>Limpieza de llantas</li><li>Nutrición de plásticos</li><li>Aplicación de cera rápida</li></ul>
-          <div class="combo-price">$15.000</div>
-          <a href="https://www.instagram.com/crowdetailing.arg/" target="_blank" class="btn-primary">Sacar Turno</a>
-        </div>
-        <div class="combo-card destacado">
-          <div class="combo-badge">Más elegido</div>
-          <div class="combo-icon">⭐</div>
-          <h3>Lavado Premium</h3>
-          <ul><li>Lavado detallado completo</li><li>Desengrase de motor y chasis</li><li>Aplicación de cera rápida</li><li>Nutrido de plásticos</li></ul>
-          <div class="combo-price">$20.000</div>
-          <a href="https://www.instagram.com/crowdetailing.arg/" target="_blank" class="btn-primary">Sacar Turno</a>
-        </div>
-        <div class="combo-card">
-          <div class="combo-icon">🖤</div>
-          <h3>Protección Premium</h3>
-          <ul><li>Lavado premium</li><li>Abrillantado</li><li>Protección hidrofóbica</li></ul>
-          <div class="combo-price">$30.000</div>
-          <a href="https://www.instagram.com/crowdetailing.arg/" target="_blank" class="btn-primary">Sacar Turno</a>
-        </div>
-        <div class="combo-card">
-          <div class="combo-icon">🔥</div>
-          <h3>Detailing Profesional</h3>
-          <ul><li>Lavado descontaminante</li><li>Lavado premium avanzado</li><li>Corrección de pintura</li></ul>
-          <div class="combo-price">$60.000</div>
-          <a href="https://www.instagram.com/crowdetailing.arg/" target="_blank" class="btn-primary">Sacar Turno</a>
-        </div>
+        <div class="combo-card"><div class="combo-icon">✔️</div><h3>Lavado Clásico</h3><ul><li>Lavado completo</li><li>Limpieza de llantas</li><li>Nutrición de plásticos</li><li>Aplicación de cera rápida</li></ul><div class="combo-price">$15.000</div><a href="https://www.instagram.com/crowdetailing.arg/" target="_blank" class="btn-primary">Sacar Turno</a></div>
+        <div class="combo-card destacado"><div class="combo-badge">Más elegido</div><div class="combo-icon">⭐</div><h3>Lavado Premium</h3><ul><li>Lavado detallado completo</li><li>Desengrase de motor y chasis</li><li>Aplicación de cera rápida</li><li>Nutrido de plásticos</li></ul><div class="combo-price">$20.000</div><a href="https://www.instagram.com/crowdetailing.arg/" target="_blank" class="btn-primary">Sacar Turno</a></div>
+        <div class="combo-card"><div class="combo-icon">🖤</div><h3>Protección Premium</h3><ul><li>Lavado premium</li><li>Abrillantado</li><li>Protección hidrofóbica</li></ul><div class="combo-price">$30.000</div><a href="https://www.instagram.com/crowdetailing.arg/" target="_blank" class="btn-primary">Sacar Turno</a></div>
+        <div class="combo-card"><div class="combo-icon">🔥</div><h3>Detailing Profesional</h3><ul><li>Lavado descontaminante</li><li>Lavado premium avanzado</li><li>Corrección de pintura</li></ul><div class="combo-price">$60.000</div><a href="https://www.instagram.com/crowdetailing.arg/" target="_blank" class="btn-primary">Sacar Turno</a></div>
       </div>
       <p class="turnos-nota">📅 Turnos Sábados y Domingos desde las 8:00 hs · Coordiná por Instagram</p>
     </section>
 
-    <!-- PRODUCTOS -->
     <section id="productos" class="productos">
       <div class="section-header">
         <p class="section-tag">Catálogo</p>
         <h2>NUESTROS <span class="accent">PRODUCTOS</span></h2>
         <p class="section-sub">Toxic Shine — la línea más completa de detailing profesional</p>
       </div>
-
       <div class="filtros">
         <button class="filtro active" onclick="filtrar(this,'todos')">Todos</button>
-        <button class="filtro" onclick="filtrar(this,'ceras')">Ceras Líquidas</button>
-        <button class="filtro" onclick="filtrar(this,'lava')">Lava Autos</button>
-        <button class="filtro" onclick="filtrar(this,'limpiadores')">Limpiadores</button>
-        <button class="filtro" onclick="filtrar(this,'exteriores')">Exteriores</button>
-        <button class="filtro" onclick="filtrar(this,'interiores')">Interiores</button>
-        <button class="filtro" onclick="filtrar(this,'profesional')">Línea Pro</button>
+        <button class="filtro" onclick="filtrar(this,'ceras')">Ceras Rápidas</button>
         <button class="filtro" onclick="filtrar(this,'selladores')">Selladores</button>
+        <button class="filtro" onclick="filtrar(this,'shampoo')">Shampoo</button>
+        <button class="filtro" onclick="filtrar(this,'limpiadores')">Limpiadores</button>
+        <button class="filtro" onclick="filtrar(this,'exterior')">Exterior</button>
+        <button class="filtro" onclick="filtrar(this,'interior')">Interior</button>
+        <button class="filtro" onclick="filtrar(this,'profesional')">Línea Pro</button>
       </div>
-
-      <div class="productos-grid">
-
-        <!-- ===== CERAS LIQUIDAS ===== -->
-        <div class="card" data-cat="ceras" data-stock="8">
-          <div class="card-img"><img src="productos_img/cherry_quick.png" alt="Cherry Quick" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Ceras Líquidas</span>
-            <h3>Cherry Quick</h3>
-            <p>Quick Detail con aroma a cereza. Brillo único en superficies húmedas y secas. Remueve polvo y marcas de pintura.</p>
-            <div class="stock-badge" data-stock="8"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Cherry Quick',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="ceras" data-stock="6">
-          <div class="card-img"><img src="productos_img/extreme_detail.png" alt="Extreme Detail" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Ceras Líquidas</span>
-            <h3>Extreme Detail</h3>
-            <p>Quick Detail con aroma a durazno. Brillo único en superficies húmedas y secas. Remueve polvo y marcas de pintura.</p>
-            <div class="stock-badge" data-stock="6"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Extreme Detail',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="ceras" data-stock="5">
-          <div class="card-img"><img src="productos_img/waterless.png" alt="Waterless" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Ceras Líquidas</span>
-            <h3>Waterless</h3>
-            <p>Limpiador en seco para limpieza sin agua. Contiene lubricantes y ceras de alta calidad.</p>
-            <div class="stock-badge" data-stock="5"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Waterless',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="ceras" data-stock="7">
-          <div class="card-img"><img src="productos_img/illusion_wax.png" alt="Illusion Wax" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Ceras Líquidas</span>
-            <h3>Illusion Wax</h3>
-            <p>Quick Detail con alto porcentaje de cera de carnauba. Efecto húmedo, protege la superficie. Ideal para acrílicos.</p>
-            <div class="stock-badge" data-stock="7"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Illusion Wax',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="ceras" data-stock="4">
-          <div class="card-img"><img src="productos_img/luxury_cera.png" alt="Luxury" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Ceras Líquidas</span>
-            <h3>Luxury</h3>
-            <p>Cera líquida en spray con elevada cantidad de cera de carnauba. Excelente brillo húmedo y protección. Para tratamientos acrílicos.</p>
-            <div class="stock-badge" data-stock="4"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Luxury Cera',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="ceras" data-stock="3">
-          <div class="card-img"><img src="productos_img/the_boss_shine.png" alt="The Boss Shine" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Ceras Líquidas</span>
-            <h3>The Boss Shine</h3>
-            <p>Sellador de pintura. Fórmula de polímeros siliconados para máximo brillo, repelencia al agua y suavidad al tacto.</p>
-            <div class="stock-badge" data-stock="3"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('The Boss Shine',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="ceras" data-stock="5">
-          <div class="card-img"><img src="productos_img/energy_seal.png" alt="Energy Seal" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Ceras Líquidas</span>
-            <h3>Energy Seal</h3>
-            <p>Sellador de pintura con polímeros siliconados. Máximo brillo, repelencia al agua y suavidad al tacto.</p>
-            <div class="stock-badge" data-stock="5"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Energy Seal',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="ceras" data-stock="4">
-          <div class="card-img"><img src="productos_img/seal_it_all.png" alt="Seal It All" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Ceras Líquidas</span>
-            <h3>Seal It All</h3>
-            <p>Sellador polifuncional para pinturas, vidrios, llantas, plásticos y cromados. Duración estimada de 4 meses.</p>
-            <div class="stock-badge" data-stock="4"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Seal It All',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <!-- ===== LAVA AUTOS ===== -->
-        <div class="card" data-cat="lava" data-stock="10">
-          <div class="card-badge">Más vendido</div>
-          <div class="card-img"><img src="productos_img/atomic.png" alt="Atomic" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Lava Autos</span>
-            <h3>Atomic</h3>
-            <p>Shampoo/Lava Autos con potenciadores de brillo, pH neutro, alto poder espumógeno y de limpieza. No barre ceras ni tratamientos previos.</p>
-            <div class="stock-badge" data-stock="10"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Atomic',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="lava" data-stock="8">
-          <div class="card-img"><img src="productos_img/banana.png" alt="Banana" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Lava Autos</span>
-            <h3>Banana</h3>
-            <p>Shampoo/Lava Autos con potenciador de brillo, pH neutro y aroma a banana. No barre ceras ni selladores. Seguro para superficies tratadas.</p>
-            <div class="stock-badge" data-stock="8"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Banana',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="lava" data-stock="6">
-          <div class="card-img"><img src="productos_img/wash_car_wax.png" alt="Wash Car Wax" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Lava Autos</span>
-            <h3>Wash Car Wax</h3>
-            <p>Shampoo/Lava Autos pH neutro con aroma a cereza. Contiene carnauba, no barre ceras ni selladores. Seguro para superficies tratadas.</p>
-            <div class="stock-badge" data-stock="6"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Wash Car Wax',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="lava" data-stock="7">
-          <div class="card-img"><img src="productos_img/supreme.png" alt="Supreme" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Lava Autos</span>
-            <h3>Supreme</h3>
-            <p>Shampoo generador de espuma consistente con aroma a frutilla. Carnauba que otorga protección, pH neutro. No barre ceras ni selladores.</p>
-            <div class="stock-badge" data-stock="7"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Supreme',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="lava" data-stock="5">
-          <div class="card-img"><img src="productos_img/pure_foam.png" alt="Pure Foam" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Lava Autos</span>
-            <h3>Pure Foam</h3>
-            <p>Shampoo diseñado para Foam Lance. pH neutro, alto poder espumógeno y de limpieza. No barre ceras ni selladores.</p>
-            <div class="stock-badge" data-stock="5"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Pure Foam',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="lava" data-stock="9">
-          <div class="card-img"><img src="productos_img/elite.png" alt="Elite" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Lava Autos</span>
-            <h3>Elite</h3>
-            <p>Shampoo con potenciadores de brillo a base de coco y banana. pH neutro, alto poder espumógeno. No barre ceras ni selladores.</p>
-            <div class="stock-badge" data-stock="9"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Elite',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="lava" data-stock="4">
-          <div class="card-img"><img src="productos_img/luxury_foam.png" alt="Luxury Foam" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Lava Autos</span>
-            <h3>Luxury Foam</h3>
-            <p>Lava auto de fórmula concentrada. Genera espuma densa otorgando lubricidad en el lavado, brillo y protección a la superficie.</p>
-            <div class="stock-badge" data-stock="4"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Luxury Foam',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="lava" data-stock="6">
-          <div class="card-img"><img src="productos_img/dip_club.png" alt="Dip Club" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Lava Autos</span>
-            <h3>Dip Club</h3>
-            <p>Ideal para vehículos con ploteo vinílico o líquido. pH neutro, alto poder espumógeno y de limpieza.</p>
-            <div class="stock-badge" data-stock="6"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Dip Club',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="lava" data-stock="5">
-          <div class="card-img"><img src="productos_img/energy_lava.png" alt="Energy Lava Auto" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Lava Autos</span>
-            <h3>Energy</h3>
-            <p>Shampoo/Lava Auto con pH neutro y aroma a guaraná. Alto poder espumógeno, limpieza y protección.</p>
-            <div class="stock-badge" data-stock="5"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Energy Lava',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="lava" data-stock="3">
-          <div class="card-badge">Estrella</div>
-          <div class="card-img"><img src="productos_img/hyper_black.png" alt="Hyper Black" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Lava Autos</span>
-            <h3>Hyper Black</h3>
-            <p>Producto estrella de la marca. Potencia el brillo y sella la superficie. pH neutro y alto poder espumógeno. Apto para superficies con tratamiento.</p>
-            <div class="stock-badge" data-stock="3"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Hyper Black',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <!-- ===== LIMPIADORES ===== -->
-        <div class="card" data-cat="limpiadores" data-stock="7">
-          <div class="card-img"><img src="productos_img/inferno_gel.png" alt="Inferno Gel APC" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Limpiadores</span>
-            <h3>Inferno Gel APC</h3>
-            <p>APC Premium para los más exigentes detailers. Sistema de suspensión de suciedad y gran poder espumógeno.</p>
-            <div class="stock-badge" data-stock="7"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Inferno Gel APC',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="limpiadores" data-stock="8">
-          <div class="card-img"><img src="productos_img/all_clean.png" alt="All Clean" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Limpiadores</span>
-            <h3>All Clean</h3>
-            <p>Limpiador multipropósito con sistema de suspensión de suciedad y gran poder espumógeno.</p>
-            <div class="stock-badge" data-stock="8"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('All Clean',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="limpiadores" data-stock="6">
-          <div class="card-img"><img src="productos_img/alcaline_wheels.png" alt="Alcaline Wheels" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Limpiadores</span>
-            <h3>Alcaline Wheels</h3>
-            <p>Limpiador alcalino para múltiples superficies con gran poder de remoción de grasas. Fórmula concentrada, diluir en agua.</p>
-            <div class="stock-badge" data-stock="6"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Alcaline Wheels',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="limpiadores" data-stock="5">
-          <div class="card-img"><img src="productos_img/formule_conquest.png" alt="Formule Conquest" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Limpiadores</span>
-            <h3>Formule Conquest</h3>
-            <p>Desengrasante de gran poder de limpieza para llantas y motores. Fórmula concentrada, diluir en agua antes de usar.</p>
-            <div class="stock-badge" data-stock="5"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Formule Conquest',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="limpiadores" data-stock="4">
-          <div class="card-img"><img src="productos_img/water_spot.png" alt="Water Spot" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Limpiadores</span>
-            <h3>Water Spot</h3>
-            <p>Restaura la transparencia de vidrios. Elimina marcas de agua, impurezas y contaminantes. Actúa contra manchas en parabrisas y vidrios.</p>
-            <div class="stock-badge" data-stock="4"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Water Spot',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="limpiadores" data-stock="6">
-          <div class="card-img"><img src="productos_img/aluwash.png" alt="Aluwash" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Limpiadores</span>
-            <h3>Aluwash</h3>
-            <p>Limpiador de chasis, motor, aluminio y acero inoxidable. Producto concentrado que actúa sobre la suciedad adherida a la superficie.</p>
-            <div class="stock-badge" data-stock="6"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Aluwash',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="limpiadores" data-stock="3">
-          <div class="card-img"><img src="productos_img/ctrl_z.png" alt="Ctrl-Z" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Limpiadores</span>
-            <h3>Ctrl-Z</h3>
-            <p>Limpiador de alta acción para eliminar suciedad severa de neumáticos, gomas, plásticos y partes metálicas del motor.</p>
-            <div class="stock-badge" data-stock="3"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Ctrl-Z',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="limpiadores" data-stock="5">
-          <div class="card-img"><img src="productos_img/bug_remover.png" alt="Bug Remover" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Limpiadores</span>
-            <h3>Bug Remover</h3>
-            <p>Limpiador exclusivo para remover insectos con gran precisión. Fácil de usar y seguro para todo tipo de superficies.</p>
-            <div class="stock-badge" data-stock="5"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Bug Remover',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="limpiadores" data-stock="4">
-          <div class="card-img"><img src="productos_img/clean_vision.png" alt="Clean Vision" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Limpiadores</span>
-            <h3>Clean Vision</h3>
-            <p>Limpiador anti-fog que previene el empañado de vidrios. Propiedades desengrasantes, máxima remoción. Fragancia a limón.</p>
-            <div class="stock-badge" data-stock="4"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Clean Vision',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="limpiadores" data-stock="6">
-          <div class="card-img"><img src="productos_img/x_tar.png" alt="X-Tar" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Limpiadores</span>
-            <h3>X-Tar</h3>
-            <p>Removedor de brea, alquitrán y pegamento. Degrada la brea pegada en la pintura y remueve residuos de pegatinas.</p>
-            <div class="stock-badge" data-stock="6"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('X-Tar',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="limpiadores" data-stock="4">
-          <div class="card-img"><img src="productos_img/iron_warning.png" alt="Iron Warning" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Limpiadores</span>
-            <h3>Iron Warning</h3>
-            <p>Descontaminante férrico de llantas. Actúa eficazmente sobre el polvo de las pastillas de freno. Gran poder de limpieza, listo para usar.</p>
-            <div class="stock-badge" data-stock="4"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Iron Warning',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <!-- ===== EXTERIORES ===== -->
-        <div class="card" data-cat="exteriores" data-stock="8">
-          <div class="card-img"><img src="productos_img/ntp.png" alt="NTP" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Exteriores</span>
-            <h3>NTP</h3>
-            <p>Restaura y reacondiciona plásticos y gomas del exterior dejando terminación natural. No daña ni deteriora la superficie. Pigmentos negros con aroma a café.</p>
-            <div class="stock-badge" data-stock="8"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('NTP',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="exteriores" data-stock="6">
-          <div class="card-img"><img src="productos_img/hells_ext.png" alt="Hells" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Exteriores</span>
-            <h3>Hells</h3>
-            <p>Restaura y reacondiciona plásticos y gomas del exterior con terminación brillante. No daña ni deteriora la superficie.</p>
-            <div class="stock-badge" data-stock="6"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Hells',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="exteriores" data-stock="7">
-          <div class="card-img"><img src="productos_img/new_tire.png" alt="New Tire" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Exteriores</span>
-            <h3>New Tire</h3>
-            <p>Alto rendimiento para terminación satinada. Renueva el aspecto de neumáticos, gomas y plásticos exteriores del vehículo.</p>
-            <div class="stock-badge" data-stock="7"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('New Tire',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="exteriores" data-stock="5">
-          <div class="card-img"><img src="productos_img/gel_shine.png" alt="Gel Shine" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Exteriores</span>
-            <h3>Gel Shine</h3>
-            <p>Restaura y reacondiciona plásticos y gomas del exterior dejando terminación brillante. No daña ni deteriora la superficie.</p>
-            <div class="stock-badge" data-stock="5"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Gel Shine',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="exteriores" data-stock="4">
-          <div class="card-img"><img src="productos_img/blue_magic.png" alt="Blue Magic" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Exteriores</span>
-            <h3>Blue Magic</h3>
-            <p>Acondicionador de exterior a base de siliconas. Excepcional rendimiento y fácil de usar. Terminación brillante y restauradora.</p>
-            <div class="stock-badge" data-stock="4"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Blue Magic',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="exteriores" data-stock="3">
-          <div class="card-img"><img src="productos_img/dark_fluid.png" alt="Dark Fluid" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Exteriores</span>
-            <h3>Dark Fluid</h3>
-            <p>Alto rendimiento para terminación brillosa y renovar el aspecto de neumáticos.</p>
-            <div class="stock-badge" data-stock="3"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Dark Fluid',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="exteriores" data-stock="5">
-          <div class="card-img"><img src="productos_img/anti_bones.png" alt="Anti Bones" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Exteriores</span>
-            <h3>Anti Bones</h3>
-            <p>Protector de pasa ruedas y chasis. Restaura el color de la superficie y brinda protección contra el agua y el paso del tiempo. Fragancia a uva.</p>
-            <div class="stock-badge" data-stock="5"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Anti Bones',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <!-- ===== INTERIORES ===== -->
-        <div class="card" data-cat="interiores" data-stock="7">
-          <div class="card-img"><img src="productos_img/bubble_gum_trim.png" alt="Bubble Gum Trim" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Interiores</span>
-            <h3>Bubble Gum Trim</h3>
-            <p>Revividor de plásticos interiores con terminación natural y aroma a chicle. Protección contra Rayos UV.</p>
-            <div class="stock-badge" data-stock="7"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Bubble Gum Trim',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="interiores" data-stock="6">
-          <div class="card-img"><img src="productos_img/trim_look_candy.png" alt="Trim Look Candy" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Interiores</span>
-            <h3>Trim Look Candy</h3>
-            <p>Revividor líquido de plásticos interiores con terminación satinada y aroma a banana. Protección UV y disminuye el deterioro.</p>
-            <div class="stock-badge" data-stock="6"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Trim Look Candy',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="interiores" data-stock="5">
-          <div class="card-img"><img src="productos_img/mango_go.png" alt="Mango Go" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Interiores</span>
-            <h3>Mango Go</h3>
-            <p>Revividor líquido de plásticos interiores con terminación satinada y aroma a mango dulce. Protección UV contra el deterioro.</p>
-            <div class="stock-badge" data-stock="5"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Mango Go',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="interiores" data-stock="4">
-          <div class="card-img"><img src="productos_img/spray_leather.png" alt="Spray Leather" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Interiores</span>
-            <h3>Spray Leather</h3>
-            <p>Revitalizador de cueros. Limpia, nutre y restaura el cuero devolviendo la flexibilidad y evitando el deterioro en el tiempo.</p>
-            <div class="stock-badge" data-stock="4"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Spray Leather',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <!-- ===== LINEA PROFESIONAL ===== -->
-        <div class="card" data-cat="profesional" data-stock="5">
-          <div class="card-img"><img src="productos_img/clay_lub.png" alt="Clay Lub" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Línea Profesional</span>
-            <h3>Clay Lub</h3>
-            <p>Lubricante de Claybar especialmente diseñado para lubricar, ayudando a un mejor desplazamiento y poder de descontaminación.</p>
-            <div class="stock-badge" data-stock="5"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Clay Lub',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="profesional" data-stock="4">
-          <div class="card-img"><img src="productos_img/paint_prepare.png" alt="Paint Prepare" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Línea Profesional</span>
-            <h3>Paint Prepare</h3>
-            <p>Limpiador de superficies previo al sellado. Brinda máxima remoción de aceites y restos de pulidores. Prepara para protección.</p>
-            <div class="stock-badge" data-stock="4"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Paint Prepare',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="profesional" data-stock="3">
-          <div class="card-img"><img src="productos_img/light_colors.png" alt="Light Colors" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Línea Profesional</span>
-            <h3>Light Colors</h3>
-            <p>Abrillantador exclusivo para colores claros. Revive drásticamente el color del vehículo otorgándole protección y repelencia con ceras naturales.</p>
-            <div class="stock-badge" data-stock="3"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Light Colors',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="profesional" data-stock="3">
-          <div class="card-img"><img src="productos_img/dark_colors.png" alt="Dark Colors" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Línea Profesional</span>
-            <h3>Dark Colors</h3>
-            <p>Abrillantador exclusivo para colores oscuros. Revive drásticamente el color del vehículo otorgándole protección y repelencia con ceras naturales.</p>
-            <div class="stock-badge" data-stock="3"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Dark Colors',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <!-- ===== SELLADORES ===== -->
-        <div class="card" data-cat="selladores" data-stock="6">
-          <div class="card-img"><img src="productos_img/anti_fog.png" alt="Anti Fog" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Selladores</span>
-            <h3>Anti Fog</h3>
-            <p>Solución antiniebla biodegradable que reduce y previene el empañamiento interior eliminando residuos del humo. Para vidrios, cascos y espejos.</p>
-            <div class="stock-badge" data-stock="6"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Anti Fog',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="selladores" data-stock="4">
-          <div class="card-img"><img src="productos_img/carnauba_pure_wax.png" alt="Carnauba Pure Wax" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Selladores</span>
-            <h3>Carnauba Pure Wax</h3>
-            <p>Cera en pasta no abrasiva de carnauba y cera de abeja con aroma a ananá. Proporciona brillo, suavidad y protección a la superficie.</p>
-            <div class="stock-badge" data-stock="4"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Carnauba Pure Wax',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="selladores" data-stock="2">
-          <div class="card-badge new">Pro</div>
-          <div class="card-img"><img src="productos_img/t1_ceramico.png" alt="T1 Cerámico" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Selladores</span>
-            <h3>T1 Cerámico</h3>
-            <p>Sellador cerámico libre de catalizadores independientes. Multilayer — Dureza Máxima: 1H — Duración: 2 años.</p>
-            <div class="stock-badge" data-stock="2"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('T1 Cerámico',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
-        <div class="card" data-cat="selladores" data-stock="2">
-          <div class="card-badge new">Pro</div>
-          <div class="card-img"><img src="productos_img/cristal_titanium.png" alt="Cristal Titanium" /></div>
-          <div class="card-body">
-            <span class="card-marca">Toxic Shine</span><span class="card-cat">Selladores</span>
-            <h3>Cristal Titanium</h3>
-            <p>Sellador cerámico profesional libre de catalizadores independientes. Multilayer — Dureza Máxima: 9H — Duración: 6 años.</p>
-            <div class="stock-badge" data-stock="2"></div>
-            <div class="card-price"><span class="price">Consultar</span><button class="btn-card" onclick="agregarCarrito('Cristal Titanium',0)">Agregar al Carrito</button></div>
-          </div>
-        </div>
-
+      <div class="productos-grid" id="productos-grid">
       </div>
-
-      <!-- CARRITO -->
-      <div class="carrito-wrap" id="carrito" style="display:none;">
-        <div class="carrito-header">
-          <h3>🛒 Tu Carrito</h3>
-          <button class="carrito-cerrar" onclick="cerrarCarrito()">✕</button>
-        </div>
-        <ul id="carrito-lista"></ul>
-        <div class="carrito-total">Total: <strong id="carrito-total">$0</strong></div>
-        <div class="carrito-btns">
-          <button class="btn-outline" onclick="seguirComprando()">← Seguir Comprando</button>
-          <button class="btn-primary" onclick="finalizarCompra()">Comprar →</button>
-        </div>
-      </div>
-
-      <!-- TICKET -->
-      <div class="ticket-overlay" id="ticket-overlay" style="display:none;">
-        <div class="ticket">
-          <div class="ticket-logo">🐦‍⬛ CROW DETAILING</div>
-          <h3>¡Gracias por tu compra!</h3>
-          <p class="ticket-sub">Realizá la transferencia y enviá el comprobante por Instagram.</p>
-          <div class="ticket-pago">
-            <div class="ticket-dato">
-              <span class="ticket-label">ALIAS</span>
-              <span class="ticket-valor">ALIAS-AQUI</span>
-            </div>
-            <div class="ticket-dato">
-              <span class="ticket-label">CBU</span>
-              <span class="ticket-valor">CBU-AQUI</span>
-            </div>
-            <div class="ticket-dato">
-              <span class="ticket-label">TOTAL</span>
-              <span class="ticket-valor total-pago" id="ticket-monto"></span>
-            </div>
-          </div>
-          <div class="ticket-detalle">
-            <p class="ticket-items-titulo">Detalle del pedido:</p>
-            <ul id="ticket-items"></ul>
-          </div>
-          <div class="ticket-instrucciones">
-            <p>📲 Una vez transferido, enviá el comprobante a nuestro Instagram:</p>
-            <a href="https://www.instagram.com/crowdetailing.arg/" target="_blank" class="btn-primary full">Enviar comprobante → @crowdetailing.arg</a>
-          </div>
-          <button class="btn-outline full" onclick="cerrarTicket()" style="margin-top:12px;">Cerrar</button>
-        </div>
-      </div>
-
     </section>
 
-    <!-- NUESTROS TRABAJOS -->
     <section id="trabajos" class="trabajos">
-      <div class="section-header">
-        <p class="section-tag">Galería</p>
-        <h2>NUESTROS <span class="accent">TRABAJOS</span></h2>
-        <p class="section-sub">Resultados reales. Así queda tu vehículo con Crow Detailing.</p>
-      </div>
+      <div class="section-header"><p class="section-tag">Galería</p><h2>NUESTROS <span class="accent">TRABAJOS</span></h2><p class="section-sub">Resultados reales. Así queda tu vehículo con Crow Detailing.</p></div>
       <div class="trabajos-grid">
         <div class="trabajo-card placeholder"><div class="placeholder-content"><span>📸</span><p>Próximamente</p></div></div>
         <div class="trabajo-card placeholder"><div class="placeholder-content"><span>📸</span><p>Próximamente</p></div></div>
@@ -739,13 +211,8 @@
       <p class="trabajos-ig">Seguinos en <a href="https://www.instagram.com/crowdetailing.arg/" target="_blank">@crowdetailing.arg</a> para ver todos los trabajos</p>
     </section>
 
-    <!-- RESEÑAS -->
     <section id="resenas" class="resenas">
-      <div class="section-header">
-        <p class="section-tag">Opiniones</p>
-        <h2>LO QUE DICEN <span class="accent">NUESTROS CLIENTES</span></h2>
-        <p class="section-sub">Más de 500 clientes satisfechos en Villa Urquiza y alrededores</p>
-      </div>
+      <div class="section-header"><p class="section-tag">Opiniones</p><h2>LO QUE DICEN <span class="accent">NUESTROS CLIENTES</span></h2><p class="section-sub">Más de 500 clientes satisfechos en Villa Urquiza y alrededores</p></div>
       <div class="resenas-grid">
         <div class="resena-card"><div class="resena-stars">★★★★★</div><p>"Llevé mi moto y quedó impecable. El recubrimiento cerámico la dejó brillando como nueva. 100% recomendable."</p><div class="resena-autor"><div class="autor-avatar">MG</div><div><strong>Matías G.</strong><span>Honda CG 150</span></div></div></div>
         <div class="resena-card destacada"><div class="resena-stars">★★★★★</div><p>"El Lavado Premium dejó el auto como nuevo. Atención de primera y el resultado habla solo. Ya saqué el segundo turno."</p><div class="resena-autor"><div class="autor-avatar">LP</div><div><strong>Laura P.</strong><span>Toyota Corolla</span></div></div></div>
@@ -756,7 +223,6 @@
       </div>
     </section>
 
-    <!-- CONTACTO -->
     <section id="contacto" class="contacto">
       <div class="contacto-inner">
         <div class="contacto-info">
@@ -783,120 +249,353 @@
         </div>
       </div>
     </section>
-
   </main>
 
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">
-        <div class="logo">
-          <img src="logocrowdet.jpeg" alt="Crow Detailing" class="logo-img small" />
-          <div class="logo-text"><span class="logo-crow">CROW</span><span class="logo-detailing">DETAILING</span></div>
-        </div>
+        <div class="logo"><img src="logocrowdet.jpeg" alt="Crow Detailing" class="logo-img small" /><div class="logo-text"><span class="logo-crow">CROW</span><span class="logo-detailing">DETAILING</span></div></div>
         <p>Cuidado profesional para tu vehículo.<br/>Villa Urquiza, CABA.</p>
       </div>
-      <div class="footer-links">
-        <h4>Navegación</h4>
-        <ul>
-          <li><a href="#inicio">Inicio</a></li>
-          <li><a href="#servicios">Servicios</a></li>
-          <li><a href="#productos">Productos</a></li>
-          <li><a href="#trabajos">Nuestros Trabajos</a></li>
-          <li><a href="#resenas">Reseñas</a></li>
-          <li><a href="#contacto">Contacto</a></li>
-        </ul>
-      </div>
-      <div class="footer-links">
-        <h4>Categorías</h4>
-        <ul>
-          <li><a href="#productos">Ceras Líquidas</a></li>
-          <li><a href="#productos">Lava Autos</a></li>
-          <li><a href="#productos">Limpiadores</a></li>
-          <li><a href="#productos">Exteriores</a></li>
-          <li><a href="#productos">Interiores</a></li>
-          <li><a href="#productos">Línea Profesional</a></li>
-          <li><a href="#productos">Selladores</a></li>
-        </ul>
-      </div>
-      <div class="footer-social">
-        <h4>Seguinos</h4>
-        <a href="https://www.instagram.com/crowdetailing.arg/" target="_blank" class="social-link">📸 @crowdetailing.arg</a>
-        <p class="footer-horario">Turnos: Sáb y Dom desde las 8:00 hs<br/>Coordiná por privado</p>
-      </div>
+      <div class="footer-links"><h4>Navegación</h4><ul><li><a href="#inicio">Inicio</a></li><li><a href="#servicios">Servicios</a></li><li><a href="#productos">Productos</a></li><li><a href="#trabajos">Nuestros Trabajos</a></li><li><a href="#resenas">Reseñas</a></li><li><a href="#contacto">Contacto</a></li></ul></div>
+      <div class="footer-links"><h4>Categorías</h4><ul><li><a href="#productos">Ceras Rápidas</a></li><li><a href="#productos">Selladores</a></li><li><a href="#productos">Shampoo</a></li><li><a href="#productos">Limpiadores</a></li><li><a href="#productos">Exterior</a></li><li><a href="#productos">Interior</a></li><li><a href="#productos">Línea Pro</a></li></ul></div>
+      <div class="footer-social"><h4>Seguinos</h4><a href="https://www.instagram.com/crowdetailing.arg/" target="_blank" class="social-link">📸 @crowdetailing.arg</a><p class="footer-horario">Turnos: Sáb y Dom desde las 8:00 hs<br/>Coordiná por privado</p></div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2025 Crow Detailing · Todos los derechos reservados · Villa Urquiza, CABA</p>
-    </div>
+    <div class="footer-bottom"><p>© 2025 Crow Detailing · Todos los derechos reservados · Villa Urquiza, CABA</p></div>
   </footer>
 
-  <script>
-    function filtrar(btn, cat) {
-      document.querySelectorAll('.filtro').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('.card').forEach(card => {
-        card.style.display = (cat === 'todos' || card.dataset.cat === cat) ? 'flex' : 'none';
-      });
-    }
+<script>
+// ===== PRODUCTOS DATA =====
+const productos = [
+  {id:1, nombre:"Cherry Quick", marca:"Toxic Shine", cat:"ceras", img:"img/cherry_quick.webp", desc:"Quick Detail con aroma a cereza. Brillo único en superficies húmedas y secas. Remueve polvo y marcas de pintura.", stock:"en"},
+  {id:2, nombre:"Illusion Wax", marca:"Toxic Shine", cat:"ceras", img:"img/illusion_wax.webp", desc:"Quick Detail con alto porcentaje de cera de carnauba. Efecto húmedo, protege la superficie. Ideal para mantenimiento de acrílicos.", stock:"en"},
+  {id:3, nombre:"Luxury Carnauba Blend", marca:"Toxic Shine", cat:"ceras", img:"img/luxury_cera.webp", desc:"Cera líquida en spray con elevada cantidad de cera de carnauba. Excelente brillo húmedo y protección.", stock:"en"},
+  {id:4, nombre:"Waterless", marca:"Toxic Shine", cat:"ceras", img:"img/waterless.webp", desc:"Limpiador en seco para limpieza sin agua. Contiene lubricantes y ceras. Ideal para limpiezas rápidas.", stock:"en"},
+  {id:5, nombre:"Energy Seal", marca:"Toxic Shine", cat:"selladores", img:"img/energy_seal.webp", desc:"Sellador de pintura con polímeros siliconados. Máximo brillo combinado con repelencia al agua y suavidad al tacto.", stock:"en"},
+  {id:6, nombre:"La Lavish", marca:"Toxic Shine", cat:"selladores", img:"img/levish.webp", desc:"Cera líquida selladora de superficies. Otorga brillo, protección y repelencia al agua en una sola aplicación.", stock:"en"},
+  {id:7, nombre:"Seal It All", marca:"Toxic Shine", cat:"selladores", img:"img/seal_it_all.webp", desc:"Sellador polifuncional para pinturas, vidrios, llantas, plásticos y cromados. Duración estimada de 4 meses.", stock:"en"},
+  {id:8, nombre:"The Boss", marca:"Toxic Shine", cat:"selladores", img:"img/the_boss_shine.webp", desc:"Sellador de pintura con polímeros siliconados. Máximo brillo con repelencia al agua y suavidad al tacto.", stock:"poco"},
+  {id:9, nombre:"Shampoo Atomic", marca:"Toxic Shine", cat:"shampoo", img:"img/atomic.webp", desc:"Shampoo con potenciadores de brillo, pH neutro, alto poder espumógeno. No barre ceras ni tratamientos previos.", stock:"en", badge:"Más vendido"},
+  {id:10, nombre:"Shampoo Banana", marca:"Toxic Shine", cat:"shampoo", img:"img/banana.webp", desc:"Shampoo con potenciador de brillo, pH neutro y aroma a banana. No barre ceras ni selladores.", stock:"en"},
+  {id:11, nombre:"Shampoo Dip Club", marca:"Toxic Shine", cat:"shampoo", img:"img/dip_club.webp", desc:"Ideal para vehículos con ploteo vinílico o líquido. pH neutro, alto poder espumógeno y de limpieza.", stock:"en"},
+  {id:12, nombre:"Shampoo Elite", marca:"Toxic Shine", cat:"shampoo", img:"img/elite.webp", desc:"Shampoo con potenciadores de brillo a base de coco y banana. pH neutro, alto poder espumógeno.", stock:"en"},
+  {id:13, nombre:"Shampoo Energy", marca:"Toxic Shine", cat:"shampoo", img:"img/energy_lava.webp", desc:"Shampoo con pH neutro y aroma a guaraná. Alto poder espumógeno, limpieza y protección.", stock:"en"},
+  {id:14, nombre:"Shampoo Hyper Black", marca:"Toxic Shine", cat:"shampoo", img:"img/hyper_black.webp", desc:"Producto estrella de la marca. Potencia el brillo y sella la superficie. pH neutro.", stock:"poco", badge:"Estrella"},
+  {id:15, nombre:"Shampoo Luxury Foam", marca:"Toxic Shine", cat:"shampoo", img:"img/luxury_foam.webp", desc:"Fórmula concentrada. Genera espuma densa otorgando lubricidad, brillo y protección.", stock:"en"},
+  {id:16, nombre:"Shampoo Pure Foam", marca:"Toxic Shine", cat:"shampoo", img:"img/pure_foam.webp", desc:"Diseñado para Foam Lance. pH neutro, alto poder espumógeno. No barre ceras ni selladores.", stock:"en"},
+  {id:17, nombre:"Shampoo Supreme", marca:"Toxic Shine", cat:"shampoo", img:"img/supreme.webp", desc:"Generador de espuma consistente con aroma a frutilla. Carnauba que otorga protección, pH neutro.", stock:"en"},
+  {id:18, nombre:"Shampoo Wax", marca:"Toxic Shine", cat:"shampoo", img:"img/wash_car_wax.webp", desc:"pH neutro con aroma a cereza. Contiene carnauba, no barre ceras ni selladores.", stock:"en"},
+  {id:19, nombre:"Alcaline Wheels", marca:"Toxic Shine", cat:"limpiadores", img:"img/alcaline_wheels.webp", desc:"Limpiador alcalino para múltiples superficies con gran poder de remoción de grasas. Concentrado.", stock:"en"},
+  {id:20, nombre:"All Clean", marca:"Toxic Shine", cat:"limpiadores", img:"img/all_clean.webp", desc:"Limpiador multipropósito con sistema de suspensión de suciedad y gran poder espumógeno.", stock:"en"},
+  {id:21, nombre:"Aluwash", marca:"Toxic Shine", cat:"limpiadores", img:"img/aluwash.webp", desc:"Limpiador de chasis, motor, aluminio y acero inoxidable. Concentrado.", stock:"en"},
+  {id:22, nombre:"Bug Remover", marca:"Toxic Shine", cat:"limpiadores", img:"img/bug_remover.webp", desc:"Limpiador exclusivo para remover insectos. Fácil de usar y seguro para todo tipo de superficies.", stock:"en"},
+  {id:23, nombre:"Clean Stuff", marca:"Toxic Shine", cat:"limpiadores", img:"img/clean_stuff.webp", desc:"Limpiador multiuso en aerosol. Limpia tapizados, alfombras y superficies vinílicas.", stock:"en"},
+  {id:24, nombre:"Clean Vision", marca:"Toxic Shine", cat:"limpiadores", img:"img/clean_vision.webp", desc:"Limpiador anti-fog que previene el empañado de vidrios. Fragancia a limón.", stock:"en"},
+  {id:25, nombre:"Ctrl-Z", marca:"Toxic Shine", cat:"limpiadores", img:"img/ctrl_z.webp", desc:"Limpiador de alta acción para eliminar suciedad severa de neumáticos, gomas, plásticos y partes metálicas.", stock:"poco"},
+  {id:26, nombre:"Formule Conquest", marca:"Toxic Shine", cat:"limpiadores", img:"img/formule_conquest.webp", desc:"Desengrasante de gran poder para llantas y motores. Fórmula concentrada, diluir en agua.", stock:"en"},
+  {id:27, nombre:"Inferno Gel APC", marca:"Toxic Shine", cat:"limpiadores", img:"img/inferno_gel.webp", desc:"APC Premium para los más exigentes detailers. Sistema de suspensión de suciedad y gran poder espumógeno.", stock:"en"},
+  {id:28, nombre:"Iron Warning", marca:"Toxic Shine", cat:"limpiadores", img:"img/iron_warning.webp", desc:"Descontaminante férrico de llantas. Actúa sobre el polvo de las pastillas de freno.", stock:"en"},
+  {id:29, nombre:"Water Spot", marca:"Toxic Shine", cat:"limpiadores", img:"img/water_spot.webp", desc:"Restaura la transparencia de vidrios. Elimina marcas de agua e impurezas.", stock:"en"},
+  {id:30, nombre:"X-Tar", marca:"Toxic Shine", cat:"limpiadores", img:"img/x_tar.webp", desc:"Removedor de brea, alquitrán y pegamento. Degrada la brea pegada en la pintura.", stock:"en"},
+  {id:31, nombre:"Back to Black", marca:"Toxic Shine", cat:"exterior", img:"img/back_to_black.webp", desc:"Revitalizador de superficies plásticas. Acabado brillante y protector de larga duración.", stock:"en"},
+  {id:32, nombre:"Blue Magic", marca:"Toxic Shine", cat:"exterior", img:"img/blue_magic.webp", desc:"Acondicionador de exterior a base de siliconas. Terminación brillante y restauradora.", stock:"en"},
+  {id:33, nombre:"Dark Fluid", marca:"Toxic Shine", cat:"exterior", img:"img/dark_fluid.webp", desc:"Alto rendimiento para terminación brillosa y renovar el aspecto de neumáticos.", stock:"poco"},
+  {id:34, nombre:"Gel Shine", marca:"Toxic Shine", cat:"exterior", img:"img/gel_shine.webp", desc:"Restaura y reacondiciona plásticos y gomas del exterior con terminación brillante.", stock:"en"},
+  {id:35, nombre:"Hells", marca:"Toxic Shine", cat:"exterior", img:"img/hells_ext.webp", desc:"Restaura y reacondiciona plásticos y gomas del exterior con terminación brillante.", stock:"en"},
+  {id:36, nombre:"Hits Bones", marca:"Toxic Shine", cat:"exterior", img:"img/anti_bones.webp", desc:"Protector de pasa ruedas y chasis. Restaura el color y brinda protección contra el agua. Fragancia a uva.", stock:"en"},
+  {id:37, nombre:"New Tire", marca:"Toxic Shine", cat:"exterior", img:"img/new_tire.webp", desc:"Alto rendimiento para terminación satinada. Renueva el aspecto de neumáticos, gomas y plásticos.", stock:"en"},
+  {id:38, nombre:"NTP", marca:"Toxic Shine", cat:"exterior", img:"img/ntp.webp", desc:"Restaura y reacondiciona plásticos y gomas del exterior dejando terminación natural. Aroma a café.", stock:"en"},
+  {id:39, nombre:"Bubble Gum", marca:"Toxic Shine", cat:"interior", img:"img/bubble_gum_trim.webp", desc:"Revividor de plásticos interiores con terminación natural y aroma a chicle. Protección UV.", stock:"en"},
+  {id:40, nombre:"Candy Cream", marca:"Toxic Shine", cat:"interior", img:"img/candy_cream.webp", desc:"Revividor cremoso de plásticos interiores con terminación satinada y aroma a banana dulce.", stock:"en"},
+  {id:41, nombre:"Creme Look", marca:"Toxic Shine", cat:"interior", img:"img/creme_look.webp", desc:"Acondicionador cremoso de plásticos interiores con terminación satinada. Protección UV.", stock:"en"},
+  {id:42, nombre:"Energy Trim", marca:"Toxic Shine", cat:"interior", img:"img/energy_trim.webp", desc:"Revividor de plásticos interiores con terminación satinada y aroma a trópico.", stock:"en"},
+  {id:43, nombre:"Fruty Cream", marca:"Toxic Shine", cat:"interior", img:"img/fruty_cream.webp", desc:"Revividor de plásticos interiores con terminación satinada y aroma a frutilla.", stock:"en"},
+  {id:44, nombre:"Holy Gloss", marca:"Toxic Shine", cat:"interior", img:"img/holy_gloss.webp", desc:"Revividor de plásticos interiores con terminación brillante y aroma a multifruta.", stock:"en"},
+  {id:45, nombre:"Mango Go", marca:"Toxic Shine", cat:"interior", img:"img/mango_go.webp", desc:"Revividor líquido de plásticos interiores con terminación satinada y aroma a mango dulce.", stock:"en"},
+  {id:46, nombre:"Mash Melon", marca:"Toxic Shine", cat:"interior", img:"img/mash_melon.webp", desc:"Revividor de plásticos interiores con terminación satinada y aroma a melón.", stock:"en"},
+  {id:47, nombre:"Sneakers", marca:"Toxic Shine", cat:"interior", img:"img/sneakers.webp", desc:"Revividor de plásticos interiores con terminación satinada y aroma a Shoter.", stock:"en"},
+  {id:48, nombre:"Spray Leather", marca:"Toxic Shine", cat:"interior", img:"img/spray_leather.webp", desc:"Revitalizador de cueros. Limpia, nutre y restaura devolviendo flexibilidad.", stock:"en"},
+  {id:49, nombre:"Trim Leather", marca:"Toxic Shine", cat:"interior", img:"img/trim_leather.webp", desc:"Revividor de cueros de base acuosa. Nutre y restaura devolviendo flexibilidad. Fragancia a cuero.", stock:"en"},
+  {id:50, nombre:"Trim Look Candy", marca:"Toxic Shine", cat:"interior", img:"img/trim_look_candy.webp", desc:"Revividor líquido de plásticos interiores con terminación satinada y aroma a banana.", stock:"en"},
+  {id:51, nombre:"Uva Shake", marca:"Toxic Shine", cat:"interior", img:"img/uva_shake.webp", desc:"Revividor cremoso de plásticos interiores con terminación satinada y aroma a uva.", stock:"en"},
+  {id:52, nombre:"All In One", marca:"Toxic Shine", cat:"profesional", img:"img/all_in_one.webp", desc:"Restaura drásticamente el color en un solo paso y devuelve el brillo a la pintura.", stock:"en"},
+  {id:53, nombre:"Carnauba Pure Wax", marca:"Toxic Shine", cat:"profesional", img:"img/carnauba_pure_wax.webp", desc:"Cera en pasta no abrasiva de carnauba y cera de abeja. Brillo, suavidad y protección.", stock:"en"},
+  {id:54, nombre:"Clay Lub", marca:"Toxic Shine", cat:"profesional", img:"img/clay_lub.webp", desc:"Lubricante de Claybar especialmente diseñado para lubricar y descontaminar.", stock:"en"},
+  {id:55, nombre:"Creme Wax Banana", marca:"Toxic Shine", cat:"profesional", img:"img/creme_wax_banana.webp", desc:"Resalta la profundidad del color y revive el brillo. Ayuda a ocultar finos rayones.", stock:"en"},
+  {id:56, nombre:"Cristal Titanium", marca:"Toxic Shine", cat:"profesional", img:"img/cristal_titanium.webp", desc:"Sellador cerámico profesional. Multilayer — Dureza Máxima: 9H — Duración: 6 años.", stock:"poco", badge:"Pro"},
+  {id:57, nombre:"Dark Colors", marca:"Toxic Shine", cat:"profesional", img:"img/dark_colors.webp", desc:"Abrillantador exclusivo para colores oscuros. Revive drásticamente el color con protección.", stock:"poco"},
+  {id:58, nombre:"F2 Finish", marca:"Toxic Shine", cat:"profesional", img:"img/f2_finish.webp", desc:"Compuesto de abrillantador para revitalizar el barniz. Utilizar con almohadillas.", stock:"en"},
+  {id:59, nombre:"Light Colors", marca:"Toxic Shine", cat:"profesional", img:"img/light_colors.webp", desc:"Abrillantador exclusivo para colores claros. Revive drásticamente el color con protección.", stock:"poco"},
+  {id:60, nombre:"Mystic Seal", marca:"Toxic Shine", cat:"profesional", img:"img/mystic_seal.webp", desc:"Resalta la profundidad del color y revive el brillo. Protección máxima en la superficie.", stock:"poco"},
+  {id:61, nombre:"P1 Polish", marca:"Toxic Shine", cat:"profesional", img:"img/p1_polish.webp", desc:"Para correcciones severas en la pintura. Nano polímeros, micro abrasivos y agentes lubricantes. Sin siliconas.", stock:"en"},
+  {id:62, nombre:"Paint Prepare", marca:"Toxic Shine", cat:"profesional", img:"img/paint_prepare.webp", desc:"Limpiador de superficies previo al sellado. Máxima remoción de aceites y restos de pulidores.", stock:"en"},
+  {id:63, nombre:"T1 Semipermanente", marca:"Toxic Shine", cat:"profesional", img:"img/t1_ceramico.webp", desc:"Sellador cerámico. Multilayer — Dureza Máxima: 1H — Duración: 2 años.", stock:"poco", badge:"Pro"},
+  {id:64, nombre:"Watermelon Wax", marca:"Toxic Shine", cat:"profesional", img:"img/watermelon.webp", desc:"Cera en crema con propiedades de abejas, carnauba y aceites. Máximo brillo y protección.", stock:"en"},
+];
 
-    document.querySelectorAll('.stock-badge').forEach(badge => {
-      const stock = parseInt(badge.dataset.stock);
-      if (stock === 0) { badge.textContent = '🔴 Sin stock'; badge.className = 'stock-badge sin-stock'; }
-      else if (stock <= 3) { badge.textContent = `🟠 Últimas ${stock} unidades`; badge.className = 'stock-badge poco-stock'; }
-      else { badge.textContent = `🟢 En stock (${stock} unid.)`; badge.className = 'stock-badge en-stock'; }
-    });
+// ===== RENDER PRODUCTOS =====
+function renderProductos(filtro='todos') {
+  const grid = document.getElementById('productos-grid');
+  const lista = filtro === 'todos' ? productos : productos.filter(p => p.cat === filtro);
+  grid.innerHTML = lista.map(p => `
+    <div class="card" data-cat="${p.cat}">
+      ${p.badge ? `<div class="card-badge${p.badge==='Pro'?' new':''}">${p.badge}</div>` : ''}
+      <div class="card-img" onclick="abrirProducto(${p.id})" style="cursor:pointer;">
+        <img src="${p.img}" alt="${p.nombre}" />
+      </div>
+      <div class="card-body">
+        <span class="card-marca">${p.marca}</span>
+        <span class="card-cat">${p.cat.charAt(0).toUpperCase()+p.cat.slice(1)}</span>
+        <h3>${p.nombre}</h3>
+        <p>${p.desc}</p>
+        <div class="stock-badge ${p.stock==='en'?'en-stock':p.stock==='poco'?'poco-stock':'sin-stock'}">${p.stock==='en'?'🟢 En Stock':p.stock==='poco'?'🟠 Pocas Unidades':'🔴 Sin Stock'}</div>
+        <div class="card-price">
+          <span class="price">Consultar</span>
+          ${p.stock!=='no' ? `<button class="btn-card" onclick="agregarCarrito(${p.id})">Agregar al Carrito</button>` : `<button class="btn-card disabled" disabled>Sin Stock</button>`}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+renderProductos();
 
-    let carrito = [];
-    function agregarCarrito(nombre, precio) {
-      const existe = carrito.find(i => i.nombre === nombre);
-      if (existe) { existe.cantidad++; } else { carrito.push({ nombre, precio, cantidad: 1 }); }
-      renderCarrito();
-      document.getElementById('carrito').style.display = 'block';
-      document.getElementById('carrito').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-    function quitarCarrito(i) {
-      carrito.splice(i, 1);
-      renderCarrito();
-      if (carrito.length === 0) document.getElementById('carrito').style.display = 'none';
-    }
-    function renderCarrito() {
-      const lista = document.getElementById('carrito-lista');
-      const totalEl = document.getElementById('carrito-total');
-      lista.innerHTML = carrito.map((item, i) =>
-        `<li><span>${item.nombre} x${item.cantidad}</span><span>${item.precio > 0 ? '$'+( item.precio*item.cantidad).toLocaleString('es-AR') : 'A consultar'}</span><button onclick="quitarCarrito(${i})">✕</button></li>`
-      ).join('');
-      const total = carrito.reduce((s, i) => s + i.precio * i.cantidad, 0);
-      totalEl.textContent = total > 0 ? '$' + total.toLocaleString('es-AR') : 'A consultar por Instagram';
-    }
-    function cerrarCarrito() { document.getElementById('carrito').style.display = 'none'; }
-    function seguirComprando() {
-      document.getElementById('carrito').style.display = 'none';
-      document.getElementById('productos').scrollIntoView({ behavior: 'smooth' });
-    }
-    function finalizarCompra() {
-      if (carrito.length === 0) return;
-      const total = carrito.reduce((s, i) => s + i.precio * i.cantidad, 0);
-      document.getElementById('ticket-monto').textContent = total > 0 ? '$' + total.toLocaleString('es-AR') : 'A confirmar por Instagram';
-      document.getElementById('ticket-items').innerHTML = carrito.map(i =>
-        `<li>${i.nombre} x${i.cantidad}</li>`).join('');
-      document.getElementById('ticket-overlay').style.display = 'flex';
-    }
-    function cerrarTicket() {
-      document.getElementById('ticket-overlay').style.display = 'none';
-      carrito = [];
-      renderCarrito();
-      document.getElementById('carrito').style.display = 'none';
-    }
+function filtrar(btn, cat) {
+  document.querySelectorAll('.filtro').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProductos(cat);
+}
 
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-    window.addEventListener('scroll', () => {
-      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
-    });
-  </script>
+// ===== MODAL PRODUCTO =====
+function abrirProducto(id) {
+  const p = productos.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById('mp-nombre').textContent = p.nombre;
+  document.getElementById('mp-img').src = p.img;
+  document.getElementById('mp-img').alt = p.nombre;
+  document.getElementById('mp-marca').textContent = p.marca;
+  document.getElementById('mp-cat').textContent = p.cat;
+  document.getElementById('mp-desc').textContent = p.desc;
+  const stockEl = document.getElementById('mp-stock');
+  stockEl.className = 'stock-badge ' + (p.stock==='en'?'en-stock':p.stock==='poco'?'poco-stock':'sin-stock');
+  stockEl.textContent = p.stock==='en'?'🟢 En Stock':p.stock==='poco'?'🟠 Pocas Unidades':'🔴 Sin Stock';
+  const btn = document.getElementById('mp-btn');
+  if (p.stock !== 'no') {
+    btn.textContent = 'Agregar al Carrito';
+    btn.disabled = false;
+    btn.onclick = () => { agregarCarrito(id); cerrarModal('modal-producto'); };
+  } else {
+    btn.textContent = 'Sin Stock';
+    btn.disabled = true;
+  }
+  document.getElementById('modal-producto').style.display = 'flex';
+}
+
+// ===== CARRITO =====
+let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+
+function guardarCarrito() {
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+  actualizarContador();
+}
+
+function actualizarContador() {
+  const total = carrito.reduce((s, i) => s + i.cantidad, 0);
+  document.getElementById('carrito-count').textContent = total;
+  document.getElementById('carrito-count').style.display = total > 0 ? 'inline' : 'none';
+}
+
+function agregarCarrito(id) {
+  const p = productos.find(x => x.id === id);
+  if (!p) return;
+  const existe = carrito.find(i => i.id === id);
+  if (existe) { existe.cantidad++; } else { carrito.push({id, nombre: p.nombre, cantidad: 1}); }
+  guardarCarrito();
+  mostrarToast('✅ ' + p.nombre + ' agregado al carrito');
+}
+
+function mostrarToast(msg) {
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.classList.add('show'), 10);
+  setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300); }, 2500);
+}
+
+function abrirCarritoModal() {
+  renderCarritoModal();
+  document.getElementById('modal-carrito').style.display = 'flex';
+}
+
+function renderCarritoModal() {
+  const lista = document.getElementById('carrito-modal-lista');
+  if (carrito.length === 0) {
+    lista.innerHTML = '<p style="color:var(--gray);text-align:center;padding:20px">El carrito está vacío</p>';
+    document.getElementById('carrito-modal-total').textContent = '$0';
+    return;
+  }
+  lista.innerHTML = carrito.map((item, i) => `
+    <div class="carrito-item">
+      <span class="carrito-item-nombre">${item.nombre}</span>
+      <div class="carrito-item-controles">
+        <button onclick="cambiarCantidad(${i}, -1)">−</button>
+        <span>${item.cantidad}</span>
+        <button onclick="cambiarCantidad(${i}, 1)">+</button>
+        <button class="btn-eliminar" onclick="eliminarItem(${i})">🗑️</button>
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('carrito-modal-total').textContent = 'A consultar por Instagram';
+}
+
+function cambiarCantidad(i, delta) {
+  carrito[i].cantidad += delta;
+  if (carrito[i].cantidad <= 0) carrito.splice(i, 1);
+  guardarCarrito();
+  renderCarritoModal();
+}
+
+function eliminarItem(i) {
+  carrito.splice(i, 1);
+  guardarCarrito();
+  renderCarritoModal();
+}
+
+function finalizarCompra() {
+  if (carrito.length === 0) return;
+  document.getElementById('ticket-monto').textContent = 'A confirmar por Instagram';
+  document.getElementById('ticket-items').innerHTML = carrito.map(i => `<li>${i.nombre} x${i.cantidad}</li>`).join('');
+  cerrarModal('modal-carrito');
+  document.getElementById('ticket-overlay').style.display = 'flex';
+
+  // Guardar en historial
+  const usuario = JSON.parse(localStorage.getItem('usuarioActivo') || 'null');
+  if (usuario) {
+    const compras = JSON.parse(localStorage.getItem('compras_' + usuario.usuario) || '[]');
+    compras.push({ fecha: new Date().toLocaleDateString('es-AR'), items: [...carrito] });
+    localStorage.setItem('compras_' + usuario.usuario, JSON.stringify(compras));
+  }
+  carrito = [];
+  guardarCarrito();
+}
+
+function cerrarTicket() {
+  document.getElementById('ticket-overlay').style.display = 'none';
+}
+
+// ===== USUARIOS =====
+function abrirRegistro() { document.getElementById('modal-registro').style.display = 'flex'; }
+function abrirLogin() { document.getElementById('modal-login').style.display = 'flex'; }
+
+function registrar() {
+  const nombre = document.getElementById('reg-nombre').value.trim();
+  const usuario = document.getElementById('reg-usuario').value.trim();
+  const mail = document.getElementById('reg-mail').value.trim();
+  const tel = document.getElementById('reg-tel').value.trim();
+  const pass = document.getElementById('reg-pass').value.trim();
+  if (!nombre || !usuario || !mail || !tel || !pass) { alert('Completá todos los campos'); return; }
+  const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
+  if (usuarios.find(u => u.usuario === usuario)) { alert('Ese usuario ya existe'); return; }
+  usuarios.push({ nombre, usuario, mail, tel, pass });
+  localStorage.setItem('usuarios', JSON.stringify(usuarios));
+  localStorage.setItem('usuarioActivo', JSON.stringify({ nombre, usuario }));
+  cerrarModal('modal-registro');
+  actualizarHeaderUsuario();
+  mostrarToast('✅ Cuenta creada. ¡Bienvenido ' + nombre + '!');
+}
+
+function login() {
+  const usuario = document.getElementById('login-usuario').value.trim();
+  const pass = document.getElementById('login-pass').value.trim();
+  const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
+  const user = usuarios.find(u => u.usuario === usuario && u.pass === pass);
+  if (!user) { alert('Usuario o contraseña incorrectos'); return; }
+  localStorage.setItem('usuarioActivo', JSON.stringify({ nombre: user.nombre, usuario: user.usuario }));
+  cerrarModal('modal-login');
+  actualizarHeaderUsuario();
+  mostrarToast('✅ ¡Bienvenido ' + user.nombre + '!');
+}
+
+function actualizarHeaderUsuario() {
+  const user = JSON.parse(localStorage.getItem('usuarioActivo') || 'null');
+  const actions = document.querySelector('.header-actions');
+  if (user) {
+    actions.innerHTML = `
+      <span class="btn-user">Hola, ${user.nombre.split(' ')[0]}</span>
+      <a href="#" class="btn-user" onclick="abrirMisCompras();return false;">Mis Compras</a>
+      <a href="#" class="btn-user" onclick="cerrarSesion();return false;">Salir</a>
+      <button class="btn-carrito-icon" onclick="abrirCarritoModal()">🛒 <span class="carrito-count" id="carrito-count">0</span></button>
+    `;
+  }
+  actualizarContador();
+}
+
+function cerrarSesion() {
+  localStorage.removeItem('usuarioActivo');
+  location.reload();
+}
+
+function abrirMisCompras() {
+  const user = JSON.parse(localStorage.getItem('usuarioActivo') || 'null');
+  const contenido = document.getElementById('compras-contenido');
+  if (!user) {
+    contenido.innerHTML = '<p style="color:var(--gray);text-align:center;padding:20px">Tenés que iniciar sesión para ver tus compras.</p>';
+  } else {
+    const compras = JSON.parse(localStorage.getItem('compras_' + user.usuario) || '[]');
+    if (compras.length === 0) {
+      contenido.innerHTML = '<p style="color:var(--gray);text-align:center;padding:20px">Todavía no realizaste compras.</p>';
+    } else {
+      contenido.innerHTML = compras.map((c, i) => `
+        <div class="compra-item">
+          <div class="compra-fecha">📅 ${c.fecha}</div>
+          <ul>${c.items.map(it => `<li>${it.nombre} x${it.cantidad}</li>`).join('')}</ul>
+          <button class="btn-outline" style="margin-top:10px;" onclick="volverAComprar(${i})">Volver a comprar</button>
+        </div>
+      `).join('');
+    }
+  }
+  document.getElementById('modal-compras').style.display = 'flex';
+}
+
+function volverAComprar(idx) {
+  const user = JSON.parse(localStorage.getItem('usuarioActivo') || 'null');
+  if (!user) return;
+  const compras = JSON.parse(localStorage.getItem('compras_' + user.usuario) || '[]');
+  const items = compras[idx].items;
+  items.forEach(item => {
+    const existe = carrito.find(i => i.nombre === item.nombre);
+    if (existe) { existe.cantidad += item.cantidad; } else { carrito.push({...item}); }
+  });
+  guardarCarrito();
+  cerrarModal('modal-compras');
+  mostrarToast('✅ Productos agregados al carrito');
+  abrirCarritoModal();
+}
+
+// ===== MODALES =====
+function cerrarModal(id) { document.getElementById(id).style.display = 'none'; }
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.style.display = 'none'; });
+});
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (href === '#') return;
+    e.preventDefault();
+    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// ===== HEADER SCROLL =====
+window.addEventListener('scroll', () => {
+  document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ===== INIT =====
+actualizarHeaderUsuario();
+</script>
 
 </body>
 </html>
