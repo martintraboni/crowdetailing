@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "nombre": "Shampoo Pure Foam",
+    "marca": "Toxic Shine",
+    "categoria": "Shampoo",
+    "precio": 15000,
+    "imagen": "img/pure_foam.webp",
+    "descripcion": "Diseñado para Foam Lance. pH neutro, alto poder espumógeno y de limpieza."
+  },
+  {
+    "id": 2,
+    "nombre": "Shampoo Supreme",
+    "marca": "Toxic Shine",
+    "categoria": "Shampoo",
+    "precio": 16000,
+    "imagen": "img/supreme.webp",
+    "descripcion": "Generador de espuma consistente con aroma a frutilla."
+  },
+  {
+    "id": 3,
+    "nombre": "Cherry Quick",
+    "marca": "Toxic Shine",
+    "categoria": "Ceras Rápidas",
+    "precio": 12000,
+    "imagen": "img/cherry_quick.webp",
+    "descripcion": "Quick Detail con aroma a cereza. Brillo único en superficies húmedas y secas."
+  },
+  {
+    "id": 4,
+    "nombre": "Energy Seal",
+    "marca": "Toxic Shine",
+    "categoria": "Selladores",
+    "precio": 18000,
+    "imagen": "img/energy_seal.webp",
+    "descripcion": "Sellador de pintura con polímeros siliconados y repelencia al agua."
+  }
+]
