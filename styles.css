@@ -333,7 +333,7 @@ nav ul li a:hover { color: var(--white); background: rgba(124, 58, 237, 0.15); }
 }
 .card-badge.new { background: #059669; }
 .card-img { height: 200px; overflow: hidden; }
-.card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+.card-img img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.4s ease; }
 .card:hover .card-img img { transform: scale(1.05); }
 .card-body { padding: 20px; display: flex; flex-direction: column; flex: 1; gap: 8px; }
 .card-cat {
@@ -556,7 +556,7 @@ footer { background: var(--dark-card); border-top: 1px solid var(--dark-border);
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;
   border: 2px solid var(--purple);
 }
 .logo-img.small {
@@ -753,7 +753,7 @@ footer { background: var(--dark-card); border-top: 1px solid var(--dark-border);
   aspect-ratio: 4/3;
   border: 1px solid var(--dark-border);
 }
-.trabajo-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+.trabajo-card img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.4s ease; }
 .trabajo-card:hover img { transform: scale(1.05); }
 .trabajo-card.placeholder {
   background: var(--dark-card);
